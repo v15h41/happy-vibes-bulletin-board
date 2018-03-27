@@ -1,4 +1,3 @@
-const users = require('../models/db');
 
 module.exports.homePage = function(req, res){
     res.send("Happy Vibes Co.");
