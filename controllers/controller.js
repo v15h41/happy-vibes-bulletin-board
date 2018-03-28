@@ -1,8 +1,10 @@
+const soonInformation = require("../models/comingSoonInfo.js");
 
-module.exports.homePage = function(req, res){
-    res.send("Happy Vibes Co.\n Lianming Wu, Alex Hurbe, Vishal Egbert");
-
+module.exports.comingSoon = function(req, res){
+    //res.send(members);
+    res.render("ComingSoonPageView", {info: soonInformation[0]});
 };
+
 module.exports.sayGoodbye = function(req, res) {
     res.send("Goodbye");
 };
