@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 
 
 
-const router = require('./routes/routes');
+const router = require('./routes/routes.js');
 
 app.set('view engine', 'ejs');
 
