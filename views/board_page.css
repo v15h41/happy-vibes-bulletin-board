@@ -1,0 +1,49 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+.page {
+    display:grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 3em 100vh;
+    grid-template-areas:
+            "header header"
+            "postits events";
+}
+
+.left_buttons {
+    height: 2.5em;
+    margin: 3px 3px 3px 3px;
+}
+
+.sticky {
+    background-color: goldenrod;
+    position: absolute;
+    min-height: 250px;
+    min-width: 250px;
+    max-height: 250px;
+    max-width: 250px;
+    padding: 1px 10px 10px 10px;
+}
+
+.header {
+    grid-area: header;
+    background-color: aqua;
+
+}
+.postits {
+    grid-area: postits;
+    background-color: azure;
+
+    position: relative;
+}
+
+.events {
+    grid-area: events;
+    background-color: bisque;
+    min-height: 100%;
+    width: 100%;
+    justify-self: stretch;
+}
