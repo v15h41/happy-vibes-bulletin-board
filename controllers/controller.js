@@ -7,7 +7,7 @@ module.exports.comingSoon = function(req, res){
 
 module.exports.login = function(req, res){
     //res.send("Happy Vibes Co.");
-    res.render('./pages/login');
+    res.render('./pages/login', { link: ".pages/forget_pwd"});
 };
 
 module.exports.sayGoodbye = function(req, res) {
