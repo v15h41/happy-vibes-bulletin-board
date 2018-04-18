@@ -13,8 +13,9 @@ function create_postit() {
     exit_note_submit();
 
     var postitsdiv = document.getElementById('postits');
+    var postitsparent = document.getElementById('posits_parent')
     console.log(document.getElementById('postits').offsetHeight);
-    console.log(document.getElementById('postits').offsetWidth);
+    console.log(document.getElementById('postits_parent').offsetWidth);
     var sticky = document.createElement("DIV");
     sticky.className = "sticky";
     var p = document.createElement("P");
@@ -23,7 +24,7 @@ function create_postit() {
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
-    var ran_height = Math.floor(Math.random()*(postitsdiv.offsetHeight-250)) + 1 ;
+    var ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 ;
     var ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
     console.log(ran_height, ran_height+'px');
     console.log(ran_width, ran_width+'px');

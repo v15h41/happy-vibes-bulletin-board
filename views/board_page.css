@@ -94,6 +94,13 @@ html, body {
     border-right: 1px whitesmoke solid;
 }
 
+#postits {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 1px;
+}
+
 #postHeader {
     font-family:  "Oswald";
     border-bottom: 1px whitesmoke solid;
