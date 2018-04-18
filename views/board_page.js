@@ -24,7 +24,7 @@ function create_postit() {
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
-    var ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 ;
+    var ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 + 50 ;
     var ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
     console.log(ran_height, ran_height+'px');
     console.log(ran_width, ran_width+'px');
