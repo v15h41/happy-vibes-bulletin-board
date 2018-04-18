@@ -159,15 +159,52 @@ html, body {
 }
 
 #new_event {
+    font-family: "Roboto Condensed";
     position: absolute;
     top: 50%;
     left: 50%;
     margin-top: -100px;
-    margin-left: -200px;
+    margin-left: -190px;
+    padding-left: 5px;
     width: 400px;
-    height: 200px;
+    height: 155px;
     background-color: ghostwhite;
     border-radius: 3px;
+}
+
+#event_name_box{
+    font-family: "Oswald";
+    margin-left: 4px;
+    margin-top: 4px;
+    border-radius: 4px;
+}
+
+#location_box{
+    font-family: "Oswald";
+    margin-top: 4px;
+    margin-left: 25px;
+    border-radius:4px;
+}
+
+#date_box{
+    font-family: "Oswald";
+    margin-top: 4px;
+    margin-left: 51px;
+    border-radius:4px;
+}
+
+#time_from_box{
+    font-family: "Oswald";
+    margin-top: 4px;
+    margin-left: 47px;
+    border-radius:4px;
+}
+
+#time_to_box{
+    font-family: "Oswald";
+    margin-top: 4px;
+    margin-left: 60px;
+    border-radius:4px;
 }
 
 #typesticky {
@@ -201,8 +238,8 @@ html, body {
 }
 
 #post_button {
-    font-family:  "Roboto Condensed";
-    font-weight: 700;
+    font-family:  "Oswald";
+    font-weight: 400;
 
     height: 30px;
     width: 70px;
@@ -210,6 +247,18 @@ html, body {
 
     margin-top: 20px;
 
+}
+
+#submit_button{
+    font-family:  "Oswald";
+    font-weight: 400;
+
+    height: 30px;
+    width: 70px;
+    border-radius: 4px;
+
+    margin-top: 20px;
+    margin-left: 160px;
 }
 
 /* width */
@@ -230,23 +279,66 @@ html, body {
 
 .event_card {
     width: 380px;
-    height: 200px;
+    height: 150px;
     margin: 10px 10px 10px 10px;
-    background-color: cadetblue;
+    border-radius: 10px;
+    background-color: #114357;
+    Opacity: 0.9;
+}
+
+.event_card:hover {
+    width: 380px;
+    height: 150px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 10px;
+    background-color: #114357;
+    border: 2px solid #f29492;
+    Opacity: 1;
+
 }
 
 .event_title {
     display: inline-block;
-}
+    margin-top: -3px;
+    margin-left: 5px;
 
-.event_time {
-    float: right;
-}
+    font-family: "Oswald";
+    font-weight:300;
+    font-size: 1.5em;
+    color: whitesmoke;
 
-.event_date {
-    float: right;
+    border-bottom: 1px solid ghostwhite;
 }
 
 .event_location {
 
+    font-family: "Oswald";
+    font-weight:300;
+    font-size: 1.2em;
+    color: whitesmoke;
+
+    margin-top: -10px;
+    margin-left: 5px;
 }
+
+.event_date {
+    font-family: "Oswald";
+    font-weight:300;
+    color: whitesmoke;
+    font-size: 1.2em;
+
+    margin-top: -10px;
+    margin-left: 5px;
+}
+
+.event_time {
+    font-family: "Oswald";
+    font-weight:300;
+    color: whitesmoke;
+    font-size: 1.2em;
+
+    margin-top: -10px;
+    margin-left: 5px;
+}
+
+

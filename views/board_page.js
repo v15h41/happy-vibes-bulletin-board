@@ -26,26 +26,34 @@ function create_event() {
 
     var event_name_h1 = document.createElement("H1");
     event_name_h1.className = "event_title";
+    var name = document.createTextNode("Event: ");
+    event_name_h1.appendChild(name);
     event_name_h1.appendChild(document.createTextNode(event_name.value));
     event_card.appendChild(event_name_h1);
 
+    var location_h2 = document.createElement("H2");
+    location_h2.className = "event_location";
+    var location = document.createTextNode("Location: ");
+    location_h2.appendChild(location);
+    location_h2.appendChild(document.createTextNode(location_box.value));
+    event_card.appendChild(location_h2);
+
+    var date_h2 = document.createElement("H2");
+    date_h2.className = "event_date";
+    var date = document.createTextNode("Date: ");
+    date_h2.appendChild(date);
+    date_h2.appendChild(document.createTextNode(date_box.value));
+    event_card.appendChild(date_h2);
+
     var time_h2 = document.createElement("H2");
     time_h2.className = "event_time";
+    var time = document.createTextNode("Time: ");
+    time_h2.appendChild(time);
     var time_string = time_from_box.value + "-" + time_to_box.value;
     time_h2.appendChild(document.createTextNode(time_string));
     event_card.appendChild(time_h2);
 
     event_card.appendChild(document.createElement("BR"));
-
-    var date_h2 = document.createElement("H2");
-    date_h2.className = "event_date";
-    date_h2.appendChild(document.createTextNode(date_box.value));
-    event_card.appendChild(date_h2);
-
-    var location_h2 = document.createElement("H2");
-    location_h2.className = "event_location";
-    location_h2.appendChild(document.createTextNode(location_box.value));
-    event_card.appendChild(location_h2);
 
     event_card.className = "event_card";
     document.getElementById("events").appendChild(event_card);
