@@ -19,6 +19,10 @@ module.exports.signup = function(req, res){
     res.render('./pages/signup', { link: "https://secure-wildwood-41890.herokuapp.com/"});
 };
 
+module.exports.board_page = function(req, res){
+    res.render('./pages/board_page');
+};
+
 module.exports.sayGoodbye = function(req, res) {
     res.send("Goodbye");
 };
