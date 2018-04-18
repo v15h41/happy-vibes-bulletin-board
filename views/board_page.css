@@ -43,7 +43,7 @@ html, body {
     opacity: 0.6;
 }
 
-.sticky:hover{
+/*.sticky:hover{
     background-color: whitesmoke;
     position: absolute;
     font-family: "Oswald";
@@ -54,7 +54,7 @@ html, body {
     padding: 1px 10px 10px 10px;
     border-radius: 5px;
     opacity: 1;
-}
+}*/
 
 .header {
     grid-area: header;
