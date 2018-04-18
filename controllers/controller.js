@@ -6,7 +6,8 @@ module.exports.comingSoon = function(req, res){
 };
 
 module.exports.login = function(req, res){
-    res.render('./pages/login', { link: "https://secure-wildwood-41890.herokuapp.com/forget_pwd"});
+    res.render('./pages/login', { forget_pwd_link: "https://secure-wildwood-41890.herokuapp.com/forget_pwd",
+                                    signup_link: "https://secure-wildwood-41890.herokuapp.com/signup"});
 };
 
 
