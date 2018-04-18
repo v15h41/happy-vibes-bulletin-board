@@ -1,11 +1,62 @@
 function open_new_note_overlay() {
-    console.log(document.getElementById("note_submit_overlay"));
     document.getElementById("note_submit_overlay").style.display = "block";
+}
+
+function open_new_event_overlay() {
+    document.getElementById("event_submit_overlay").style.display = "block";
+}
+
+function exit_event_submit() {
+    document.getElementById("event_submit_overlay").style.display = "none";
 }
 
 function exit_note_submit() {
     document.getElementById("sticky_submit_text").innerText = '';
     document.getElementById("note_submit_overlay").style.display = "none";
+}
+
+function create_event() {
+    var event_name = document.getElementById("event_name_box");
+    var location_box = document.getElementById("location_box");
+    var date_box = document.getElementById("date_box");
+    var time_from_box = document.getElementById("time_from_box");
+    var time_to_box = document.getElementById("time_to_box");
+
+    var event_card = document.createElement("DIV");
+
+    var event_name_h1 = document.createElement("H1");
+    event_name_h1.className = "event_title";
+    event_name_h1.appendChild(document.createTextNode(event_name.value));
+    event_card.appendChild(event_name_h1);
+
+    var time_h2 = document.createElement("H2");
+    time_h2.className = "event_time";
+    var time_string = time_from_box.value + "-" + time_to_box.value;
+    time_h2.appendChild(document.createTextNode(time_string));
+    event_card.appendChild(time_h2);
+
+    event_card.appendChild(document.createElement("BR"));
+
+    var date_h2 = document.createElement("H2");
+    date_h2.className = "event_date";
+    date_h2.appendChild(document.createTextNode(date_box.value));
+    event_card.appendChild(date_h2);
+
+    var location_h2 = document.createElement("H2");
+    location_h2.className = "event_location";
+    location_h2.appendChild(document.createTextNode(location_box.value));
+    event_card.appendChild(location_h2);
+
+    event_card.className = "event_card";
+    document.getElementById("events").appendChild(event_card);
+
+    event_name.value = "";
+    location_box.value = "";
+    date_box.value = "";
+    time_from_box.value = "";
+    time_to_box.value = "";
+
+    exit_event_submit();
 }
 
 function create_postit() {
