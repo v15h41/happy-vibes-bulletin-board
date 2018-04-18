@@ -16,7 +16,7 @@ module.exports.forget_pwd = function(req, res){
 };
 
 module.exports.signup = function(req, res){
-    res.render('./pages/signup', { link: "https://secure-wildwood-41890.herokuapp.com/login"});
+    res.render('./pages/signup', { link: "https://secure-wildwood-41890.herokuapp.com/"});
 };
 
 module.exports.sayGoodbye = function(req, res) {
