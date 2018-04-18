@@ -10,6 +10,12 @@ module.exports.login = function(req, res){
     res.render('./pages/login', { link: ".pages/forget_pwd"});
 };
 
+
+module.exports.forget_pwd = function(req, res){
+    //res.send("Happy Vibes Co.");
+    res.render('./pages/forget_pwd', { link: ".pages/login"});
+};
+
 module.exports.sayGoodbye = function(req, res) {
     res.send("Goodbye");
 };
