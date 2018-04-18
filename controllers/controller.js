@@ -6,14 +6,16 @@ module.exports.comingSoon = function(req, res){
 };
 
 module.exports.login = function(req, res){
-    //res.send("Happy Vibes Co.");
     res.render('./pages/login', { link: "https://secure-wildwood-41890.herokuapp.com/forget_pwd"});
 };
 
 
 module.exports.forget_pwd = function(req, res){
-    //res.send("Happy Vibes Co.");
     res.render('./pages/forget_pwd', { link: "https://secure-wildwood-41890.herokuapp.com/"});
+};
+
+module.exports.signup = function(req, res){
+    res.render('./pages/signup', { link: "https://secure-wildwood-41890.herokuapp.com/login"});
 };
 
 module.exports.sayGoodbye = function(req, res) {
