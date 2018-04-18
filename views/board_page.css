@@ -88,8 +88,6 @@ html, body {
     /*background: whitesmoke;*/
     opacity: 1;
     margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 150px;
     margin-bottom: 80px;
     border-right: 1px whitesmoke solid;
 }
@@ -104,9 +102,13 @@ html, body {
 #postHeader {
     font-family:  "Oswald";
     border-bottom: 1px whitesmoke solid;
+    width: 500px;
     font-weight: 300;
-    margin-left: 260px;
-    margin-right: 260px;
+    /*margin-left: 260px;
+    margin-right: 260px;*/
+    position: absolute;
+    margin-left: -250px;
+    left: 50%;
     height: 50px;
     font-size:2em;
     color: whitesmoke;
@@ -117,20 +119,21 @@ html, body {
     font-family:  "Oswald";
     font-weight: 300;
     margin-top: 10px;
-    margin-right: 70px;
     height: 50px;
     font-size:2em;
     color: whitesmoke;
     text-align: center;
     border-bottom: 1px whitesmoke solid;
+    width: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 
 .events {
     grid-area: events;
-    margin-right: 100px;
     min-height: 100%;
-    width: 100%;
+    width: 400px;
     justify-self: stretch;
 }
 
