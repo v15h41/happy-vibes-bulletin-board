@@ -19,8 +19,13 @@ html, body {
 
 .bottom_right_buttons {
     height: 2.5em;
-    /*margin: 3px 3px 3px 3px;*/
-    float: left;
+    padding: 5px 5px 5px 5px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 2;
+    position:absolute;
+    background-color: blueviolet;
+    border-radius: 100px;
 }
 
 .sticky {
