@@ -327,20 +327,19 @@ html, body {
     margin: 10px 10px 10px 10px;
     border-radius: 10px;
     background-color: #114357;
-    Opacity: 0.9;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
+    Opacity: 0.8;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
 }
 
 .event_card:hover {
-    width: 380px;
-    height: 150px;
-    margin: 10px 10px 10px 10px;
-    border-radius: 10px;
-    background-color: #114357;
-    border: 2px solid #f29492;
     Opacity: 1;
+
+    /*Glow*/
+    -webkit-box-shadow: 0px 0px 20px #f29492;
+    -moz-box-shadow: 0px 0px 20px #f29492;
+    box-shadow: 0px 0px 20px #f29492;
 
 }
 
