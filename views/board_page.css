@@ -37,6 +37,14 @@ html, body {
     border-radius: 100px;
 }
 
+.add_event_button {
+    bottom: 10px;
+}
+
+.add_event_button:hover {
+    bottom: 10px;
+}
+
 .sticky {
     background-color: whitesmoke;
     position: absolute;
@@ -71,6 +79,7 @@ html, body {
     opacity: 0.8;
 
 }
+
 
 .company_name {
     font-family: "Oswald";
@@ -135,6 +144,7 @@ html, body {
     min-height: 100%;
     width: 400px;
     justify-self: stretch;
+    overflow: auto;
 }
 
 #newnote {
@@ -149,6 +159,17 @@ html, body {
     text-align: center;
 }
 
+#new_event {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;
+    width: 400px;
+    height: 200px;
+    background-color: ghostwhite;
+}
+
 #typesticky {
     position: relative;
     left: 50%;
@@ -156,7 +177,7 @@ html, body {
     margin-top: 20px;
 
 }
-#note_submit_overlay {
+.overlay {
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
@@ -183,4 +204,43 @@ html, body {
     margin-top: 20px;
     height: 30px;
     width: 70px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    opacity: 0.8;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.event_card {
+    width: 380px;
+    height: 200px;
+    margin: 10px 10px 10px 10px;
+    background-color: cadetblue;
+}
+
+.event_title {
+    display: inline-block;
+}
+
+.event_time {
+    float: right;
+}
+
+.event_date {
+    float: right;
+}
+
+.event_location {
+
 }

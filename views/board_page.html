@@ -24,14 +24,16 @@
     </div>
 
 
-    <div class="events">
+    <div id="events" class="events">
         <div id="eventHeader">
             UPCOMING EVENTS
         </div>
+
+        <img  class="add_event_button bottom_right_buttons" src="149156.svg" onclick="open_new_event_overlay()">
     </div>
 </div>
 
-<div id="note_submit_overlay">
+<div id="note_submit_overlay" class="overlay">
     <div id="newnote">
         <div class="sticky" id="typesticky">
             <div id="sticky_submit_text" class="sticky_text" class="editable" contenteditable="true">
@@ -40,6 +42,17 @@
             <button type="button" id="post_button" onclick="create_postit()">Post It!</button>
 
         </div>
+    </div>
+</div>
+
+<div id="event_submit_overlay" class="overlay">
+    <div id="new_event">
+        <div>Event Name: <input id="event_name_box" type="text"><br>
+       Location: <input id="location_box" type="text"><br>
+        Date: <input id="date_box" type="date"><br>
+        From: <input id="time_from_box" type="time"><br>
+        Till: <input id="time_to_box" type="time"></div>
+        <button type="button" onclick="create_event()">Submit</button>
     </div>
 </div>
 </body>
