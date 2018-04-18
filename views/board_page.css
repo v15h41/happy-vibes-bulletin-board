@@ -155,7 +155,6 @@ html, body {
     margin-left: -150px;
     width: 300px;
     height: 350px;
-    /*background-color: blue;*/
     text-align: center;
 }
 
@@ -168,6 +167,7 @@ html, body {
     width: 400px;
     height: 200px;
     background-color: ghostwhite;
+    border-radius: 3px;
 }
 
 #typesticky {
@@ -201,9 +201,15 @@ html, body {
 }
 
 #post_button {
-    margin-top: 20px;
+    font-family:  "Roboto Condensed";
+    font-weight: 700;
+
     height: 30px;
     width: 70px;
+    border-radius: 4px;
+
+    margin-top: 20px;
+
 }
 
 /* width */
