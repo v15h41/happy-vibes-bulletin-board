@@ -1,0 +1,31 @@
+#login_frame {
+    width: 400px;
+    height: 200px;
+    padding: 13px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
+
+    background-color: rgba(218, 226, 237, 0.5);
+
+    border-radius: 10px;
+    text-align: center;
+}
+
+#signup {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    float: center;
+    top: 3px;
+
+}
+
+#signup:hover {
+    color: rgba(68, 79, 71, 0.6);
+    text-decoration: underline;
+}
