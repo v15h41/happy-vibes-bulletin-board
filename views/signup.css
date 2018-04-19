@@ -135,6 +135,10 @@ form p > * {
     text-decoration: underline;
 }
 
+#email_icon{
+    height: 16px;
+    
+}
 
 #recall {
     display: block;
