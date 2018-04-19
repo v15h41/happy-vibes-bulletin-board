@@ -22,6 +22,10 @@ html, body {
 
 }
 
+#header{
+    color: ghostwhite;
+}
+
 #company_name {
     font-family: "Oswald";
     font-weight: 400;
@@ -29,7 +33,6 @@ html, body {
     text-align: left;
     color: ghostwhite;
     margin-top: -5px;
-    margin-left: 20px;
 }
 
 .dropbtn {
@@ -112,7 +115,7 @@ html, body {
 .page {
     display:grid;
     grid-template-columns: 4fr 1fr;
-    grid-template-rows: 4em 100vh;
+    grid-template-rows: 8em 100vh;
     grid-template-areas:
             "header header"
             "postits events";
@@ -123,7 +126,7 @@ html, body {
     opacity: 0.5;
     height: 3em;
     right: 8px;
-    bottom: -2px;
+    bottom: 8%;
     z-index: 2;
     position:absolute;
 }
@@ -132,7 +135,7 @@ html, body {
     opacity: 1;
     height: 3em;
     right: 8px;
-    bottom: -2px;
+    bottom: 8%;
     z-index: 2;
     position:absolute;
 }
