@@ -328,19 +328,17 @@ html, body {
 }
 
 #submit_button{
-    font-size: 14px;
-    font-family: "Roboto Condensed";
+    font-family:  "Oswald";
+    font-weight: 400;
 
-    width: 120px;
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
-    color: black;
-    outline:none !important;
-    background-color: whitesmoke;
-    border-radius: 6px;
-    border: 0;
-    opacity: 0.6;
+    height: 30px;
+    width: 70px;
+    border-radius: 4px;
+
+    margin-top: 20px;
+    margin-left: 160px;
+
+
 }
 
 /* width */
