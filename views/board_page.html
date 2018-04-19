@@ -23,9 +23,7 @@
 
     <div id="header">
         <button id="openNav" style="float:left" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
-        <div style="margin-left: 10px;">
-            <h1 id = "company_name">HAPPY VIBES CO.</h1>
-        </div>
+        <h1 id = "company_name">HAPPY VIBES CO.</h1>
     </div>
 
 
@@ -36,7 +34,7 @@
             <div id="postHeader">
                 OFFICE MESSAGE BOARD
             </div>
-            <img class="bottom_right_buttons" src="plusButton.png" onclick="open_new_note_overlay()">
+            <img class="add_note_buttons" src="plusButton.png" onclick="open_new_note_overlay()">
     <div id="postits">
         <!-- This is the div where post are generated -->
     </div>
@@ -47,7 +45,7 @@
         <div id="eventHeader">
             UPCOMING EVENTS
         </div>
-        <img  class="add_event_button bottom_right_buttons" src="addNoteButton.png" onclick="open_new_event_overlay()">
+        <img  class="add_event_button" src="addNoteButton.png" onclick="open_new_event_overlay()">
     </div>
 </div>
 
@@ -66,8 +64,8 @@
 <!-- Event SUBMIT OVERLAY -->
 <div id="event_submit_overlay" class="overlay">
     <div id="new_event">
-        <div>Event Name: <input id="event_name_box" type="text" value = "Looking at memes"><br>
-             Location: <input id="location_box" type="text" value = "The lounge"><br>
+        <div>Event Name: <input id="event_name_box" type="text"><br>
+             Location: <input id="location_box" type="text"><br>
              Date: <input id="date_box" type="date"><br>
              From: <input id="time_from_box" type="time"><br>
              Till: <input id="time_to_box" type="time">
