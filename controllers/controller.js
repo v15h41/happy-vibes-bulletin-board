@@ -6,21 +6,21 @@ module.exports.comingSoon = function(req, res){
 };
 
 module.exports.login = function(req, res){
-    res.render('./pages/login', { forget_pwd_link: "https://secure-wildwood-41890.herokuapp.com/forget_pwd",
-                                    signup_link: "https://secure-wildwood-41890.herokuapp.com/signup"});
+    res.render('./pages/login', { forget_pwd_link: "/forget_pwd",
+                                    signup_link: "/signup"});
 };
 
 
 module.exports.forget_pwd = function(req, res){
-    res.render('./pages/forget_pwd', { link: "https://secure-wildwood-41890.herokuapp.com/"});
+    res.render('./pages/forget_pwd', { link: "/"});
 };
 
 module.exports.signup = function(req, res){
-    res.render('./pages/signup', { link: "https://secure-wildwood-41890.herokuapp.com/"});
+    res.render('./pages/signup', { link: "/"});
 };
 
 module.exports.board_page = function(req, res){
-    res.render('./pages/board_page');
+    res.render('./pages/board_page', { log_out_link: "/"});
 };
 
 module.exports.sayGoodbye = function(req, res) {
