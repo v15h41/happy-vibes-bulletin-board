@@ -9,19 +9,18 @@
 </head>
 
 <body>
+
+<h id="company_name">HAPPY VIBES CO.</h>
+
 <div id="login_frame">
-
-    <h id="teamname">Happy Vibes Co.</h>
-
     <form method="post" action="login.js">
-
-        <p><label class="label_input">Username</label><input type="text" id="username" class="text_field"/></p>
-        <p><label class="label_input">Password</label><input type="text" id="password" class="text_field"/></p>
+        <p><img class="login_icons" src = "profileImg.png"><input type="text" id="username" class="text_field" placeholder = "Username"/></p>
+        <p><img class="login_icons" src = "lockIcon.svg"><input type="text" id="password" class="text_field" placeholder= "Password"/></p>
 
         <div id="login_control">
             <input type="button" id="btn_login" value="Login" onclick="login();"/>
-            <a id="signup" href="signup.html">Join us!</a>
             <a id="forget_pwd" href="forget_pwd.html">Forget Password？</a>
+            <a id="signup" href="signup.html">Join us!</a>
         </div>
     </form>
 </div>
