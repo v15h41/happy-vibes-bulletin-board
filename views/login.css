@@ -41,11 +41,9 @@ body {
     font-family: Oswald;
     font-weight: 400;
     font-size: 6em;
-    text-align: left;
+    text-align: center;
     color: ghostwhite;
-    display: inline-block;
     margin-top: 100px;
-    margin-left: 330px;
     Opacity: 0.7;
 }
 
