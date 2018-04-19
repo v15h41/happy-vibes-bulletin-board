@@ -17,6 +17,7 @@
     <a href="<%= log_out_link%>" class="w3-bar-item w3-button">Log Out</a>
 </div>
 
+<!-- Page Content -->
 <div class="page" id = "main">
     <div id="header">
         <button style="float: left" id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
@@ -25,6 +26,7 @@
         </div>
     </div>
 
+    <!-- NOTE MESSAGE BOARD -->
     <div id="postits_parent" class="postits">
 
         <div id="postHeader">
@@ -32,11 +34,12 @@
         </div>
         <img class="bottom_right_buttons" src="/img/addNoteButton.png" onclick="open_new_note_overlay()">
         <div id="postits">
+            <!-- This is the div where post are generated -->
         </div>
 
     </div>
 
-
+    <!-- EVENT BOARD -->
     <div id="events" class="events">
         <div id="eventHeader">
             UPCOMING EVENTS
@@ -46,6 +49,7 @@
     </div>
 </div>
 
+<!-- NOTE SUBMIT OVERLAY -->
 <div id="note_submit_overlay" class="overlay">
     <div id="newnote">
         <div class="sticky" id="typesticky">
@@ -58,6 +62,7 @@
     </div>
 </div>
 
+<!-- Event SUBMIT OVERLAY -->
 <div id="event_submit_overlay" class="overlay">
     <div id="new_event">
         <div>Event Name: <input id="event_name_box" type="text"><br>

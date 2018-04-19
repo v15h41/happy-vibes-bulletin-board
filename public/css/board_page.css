@@ -5,39 +5,34 @@ html, body {
     width: 100%;
     margin: 0;
     overflow: hidden;
-    background-color: #466368;
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
+    background: linear-gradient(2deg, #355c7d, #6c5b7b, #c06c84, #3e5151, #2c3e50);
+    background-size: 1000% 1000%;
+    animation: fadein 2s, GradientChange 60s ;
+    -moz-animation: fadein 2s, GradientChange 60s; /* Firefox */
+    -webkit-animation: fadein 2s, GradientChange 60s; /* Safari and Chrome */
+    -o-animation: fadein 2s, GradientChange 60s; /* Opera */
 }
 
-
-
-#header{
-    color: ghostwhite;
+@-webkit-keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
 }
-
-#openNav:hover{
-    color: rgba(68, 79, 71, 0.6);
-    background-color: none;
+@-moz-keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
 }
-
-#company_name {
-    font-family: "Oswald";
-    font-weight: 400;
-    font-size: 3em;
-    text-align: left;
-    color: ghostwhite;
-    margin-top: -5px;
+@-o-keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
 }
-
-
-
-#company_name:hover{
-    color: rgba(68, 79, 71, 0.6);
+@keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
 }
-
 
 @keyframes fadein {
     from {
@@ -71,6 +66,29 @@ html, body {
         opacity: 1;
     }
 }
+
+
+#header{
+    color: ghostwhite;
+}
+
+#openNav:hover{
+    color: rgba(68, 79, 71, 0.6);
+    background-color: none;
+}
+
+#company_name {
+    font-family: "Oswald";
+    margin-left: 10px;
+    font-weight: 400;
+    font-size: 3em;
+    text-align: left;
+    color: ghostwhite;
+    margin-top: -5px;
+}
+
+
+
 .page {
     display:grid;
     grid-template-columns: 4fr 1fr;
@@ -78,25 +96,20 @@ html, body {
     grid-template-areas:
             "header header"
             "postits events";
-    background: linear-gradient(to top, #114357, #f29492);;
+    /*background: linear-gradient(to top, #114357, #f29492);*/
 }
 
-.bottom_right_buttons {
+.add_note_buttons {
     opacity: 0.5;
     height: 3em;
     right: 8px;
-    bottom: 8%;
+    bottom: 1%;
     z-index: 2;
     position:absolute;
 }
 
-.bottom_right_buttons:hover {
+.add_note_buttons:hover {
     opacity: 1;
-    height: 3em;
-    right: 8px;
-    bottom: 8%;
-    z-index: 2;
-    position:absolute;
 }
 
 
@@ -227,7 +240,7 @@ html, body {
     margin-left: -190px;
     padding-left: 5px;
     width: 400px;
-    height: 155px;
+    height: 170px;
     background-color: ghostwhite;
     border-radius: 3px;
 }
@@ -342,7 +355,7 @@ html, body {
     height: 150px;
     margin: 10px 10px 10px 10px;
     border-radius: 10px;
-    background-color: #114357;
+    background-color: ghostwhite;
     Opacity: 0.8;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -367,7 +380,7 @@ html, body {
     font-family: "Oswald";
     font-weight:300;
     font-size: 1.5em;
-    color: whitesmoke;
+    color: black;
 
     border-bottom: 1px solid ghostwhite;
 }
@@ -377,7 +390,7 @@ html, body {
     font-family: "Oswald";
     font-weight:300;
     font-size: 1.2em;
-    color: whitesmoke;
+    color: black;
 
     margin-top: -10px;
     margin-left: 5px;
@@ -386,7 +399,7 @@ html, body {
 .event_date {
     font-family: "Oswald";
     font-weight:300;
-    color: whitesmoke;
+    color: black;
     font-size: 1.2em;
 
     margin-top: -10px;
@@ -396,7 +409,7 @@ html, body {
 .event_time {
     font-family: "Oswald";
     font-weight:300;
-    color: whitesmoke;
+    color: black;
     font-size: 1.2em;
 
     margin-top: -10px;
