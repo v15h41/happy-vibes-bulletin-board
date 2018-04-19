@@ -25,23 +25,7 @@ form p > * {
     width: 20px;
 }
 
-/*
-.label_input {
-    font-size: 14px;
-    font-family: "Roboto Condensed";
 
-    width: 120px;
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
-    margin-top: -50px;
-
-    color: white;
-    background-color: rgba(68, 79, 71, 0.6);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-*/
 .text_field {
     width: 360px;
     height: 50px;

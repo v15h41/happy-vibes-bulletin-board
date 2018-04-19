@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,500|Roboto+Condensed:300,400,700');
 
-html{
+ejs,html{
     height: 100%
 
 }
 
 body {
-    /*background-image: linear-gradient(rgb(191, 186, 182), rgba(218, 226, 237, 0.2)), url('https://source.unsplash.com/BckPaTv1RZ8/5184 × 3456');*/
     background: linear-gradient(2deg, #355c7d, #6c5b7b, #c06c84, #3e5151, #2c3e50);
     background-size: 1000% 1000%;
 
