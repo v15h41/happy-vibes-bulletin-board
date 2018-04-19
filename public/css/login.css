@@ -6,7 +6,8 @@ html{
 }
 
 body {
-    background-image: linear-gradient(rgb(191, 186, 182), rgba(218, 226, 237, 0.2)), url('https://source.unsplash.com/BckPaTv1RZ8/5184 × 3456');
+    /*background-image: linear-gradient(rgb(191, 186, 182), rgba(218, 226, 237, 0.2)), url('https://source.unsplash.com/BckPaTv1RZ8/5184 × 3456');*/
+    background: linear-gradient(to top, #3e5151, #decba4);
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
