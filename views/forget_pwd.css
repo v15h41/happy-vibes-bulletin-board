@@ -6,34 +6,81 @@ html{
 }
 
 body {
-    background-image: linear-gradient(rgb(191, 186, 182), rgba(218, 226, 237, 0.2)), url('https://source.unsplash.com/BckPaTv1RZ8/5184 × 3456');
-    background-position: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
+    background: linear-gradient(2deg, #355c7d, #6c5b7b, #c06c84, #3e5151, #2c3e50);
+    background-size: 1000% 1000%;
+
+
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 20s ease infinite;
+    -o-animation: AnimationName 20s ease infinite;
+    animation: AnimationName 20s ease infinite;
 }
 
-#teamname {
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+
+
+
+#company_name{
     font-family: Oswald;
-    font-size: xx-large;
-    color: rgb(68, 79, 71);
+    font-weight: 400;
+    font-size: 6em;
+    text-align: center;
+    color: ghostwhite;
+    margin-top: 100px;
+    Opacity: 0.7;
 }
 
 #login_frame {
     width: 400px;
-    height: 140px;
+    height: 20px;
     padding: 13px;
 
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -200px;
-    margin-top: -200px;
+    margin-top: -30px;
+    margin-left: -220px;
 
     background-color: rgba(218, 226, 237, 0.5);
-
     border-radius: 10px;
     text-align: center;
 }
+
+
+.login_icons{
+    float:left;
+    margin-top: -13px;
+    height: 20px;
+    width: 20px;
+}
+
+
+#email_icon{
+    height: 16px;
+
+}
+
+
 
 form p > * {
     display: inline-block;
@@ -58,12 +105,16 @@ form p > * {
 }
 
 .text_field {
-    width: 278px;
-    height: 28px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    width: 360px;
+    height: 50px;
+    margin-top: -37px;
+    margin-left: 40px;
+    border-radius: 4px;
     border: 0;
+    outline:none !important;
+    background: transparent !important;
 }
+
 
 #btn_login {
     font-size: 14px;
@@ -73,38 +124,22 @@ form p > * {
     height: 28px;
     line-height: 28px;
     text-align: center;
-
-    color: white;
-    background-color: rgba(68, 79, 71, 0.6);
+    color: black;
+    outline:none !important;
+    background-color: whitesmoke;
     border-radius: 6px;
     border: 0;
-
-    float: left;
-}
-
-#signup {
-    font-size: 14px;
-    color: white;
-    text-decoration: none;
-    position: relative;
-    float: center;
-    top: 3px;
-
-}
-
-#signup:hover {
-    color: rgba(68, 79, 71, 0.6);
-    text-decoration: underline;
+    opacity: 0.6;
 }
 
 #recall {
+    display: block;
+    font-family: "Roboto Condensed";
     font-size: 12px;
     color: white;
+    margin-left: 8px;
     text-decoration: none;
-    position: relative;
-    float: right;
-    top: 5px;
-
+    margin-top: 2px;
 }
 
 #recall:hover {
