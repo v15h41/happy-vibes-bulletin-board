@@ -1,13 +1,13 @@
 /*signup box*/
 #login_frame {
     width: 400px;
-    height: 140px;
+    height: 235px;
     padding: 13px;
 
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-top: -30px;
+    margin-top: -70px;
     margin-left: -220px;
 
     background-color: rgba(218, 226, 237, 0.5);
