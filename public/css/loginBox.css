@@ -54,20 +54,25 @@ form p > * {
     opacity: 0.6;
 }
 
-#signup {
+#signupline {
     font-family: "Roboto Condensed";
     font-size: 14px;
-    color: white;
+    color: grey;
     text-decoration: none;
     top: 3px;
     display: block;
     margin-top: 100px;
     border-bottom: 1px solid whitesmoke;
+}
 
+#signup {
+    font-family: "Roboto Condensed";
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
 }
 
 #signup:hover {
-    color: rgba(68, 79, 71, 0.6);
     text-decoration: underline;
 }
 

@@ -5,9 +5,9 @@ function login() {
     var pass = document.getElementById("password");
     var pass1 = document.getElementById("con_password");
 
-    if (username.value == "") {
+    if (firstname.value == "") {
 
-        alert("Enter Username");
+        alert("Enter first name");
 
     } else if (pass.value  == "") {
 

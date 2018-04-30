@@ -10,6 +10,8 @@ router.get('/signup', controller.signup);
 
 router.get('/board_page', controller.board_page);
 
+router.get('/newroom', controller.create_room);
+
 router.get('/bye', controller.sayGoodbye);
 
 

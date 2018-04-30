@@ -7,7 +7,7 @@ module.exports.comingSoon = function(req, res){
 
 module.exports.login = function(req, res){
     res.render('./pages/login', { forget_pwd_link: "/forget_pwd",
-                                    signup_link: "/signup"});
+                                    signup_link: "/signup", newroom_link: "/newroom"});
 };
 
 
@@ -21,6 +21,10 @@ module.exports.signup = function(req, res){
 
 module.exports.board_page = function(req, res){
     res.render('./pages/board_page', { log_out_link: "/"});
+};
+
+module.exports.create_room = function(req, res) {
+  res.render('./pages/newroom');
 };
 
 module.exports.sayGoodbye = function(req, res) {
