@@ -33,7 +33,7 @@
             OFFICE MESSAGE BOARD
         </div>
         <img class="add_note_buttons" src="/img/plusButton.png" onclick="open_new_note_overlay()">
-        <div id="postits">
+        <div class = "droppable" id="postits">
             <!-- This is the div where post are generated -->
         </div>
 
@@ -73,5 +73,63 @@
         <button type="button" id = "submit_button" onclick="create_event()">Submit</button>
     </div>
 </div>
+
+<script>
+
+    let currentDroppable = null;
+
+    typesticky.onmousedown = function (event) {
+
+        let shiftX = event.clientX - typesticky.getBoundingClientRect().left;
+        let shiftY = event.clientY - typesticky.getBoundingClientRect().top;
+
+        typesticky.style.position = "absolute";
+        typesticky.style.zIndex = 1000;
+        document.body.append(typesticky);
+
+        moveAt(event.pageX, event.pageY);
+
+        function moveAt(pageX, pageY){
+            typesticky.style.left = pageX - shiftX / 2 + "px";
+            typesticky.style.top = pageY - shiftY / 2 + "px";
+        };
+
+        function onMouseMove(event){
+            moveAt(event.pageX, event.pageY);
+            typesticky.hidden = true;
+            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+            typesticky.hidden = false;
+
+            if(!elemBelow){
+                return;
+            }
+            let droppableBelow = elemBelow.closest(".droppable");
+
+            if(currentDroppable != droppableBelow){
+                if (currentDroppable){
+                    leaveDroppable(currentDroppable);
+                }
+                currentDroppable = droppableBelow;
+                if (currentDroppable){
+                    enterDroppable(currentDroppable);
+                }
+            }
+        }
+
+        document.addEventListener("mousemove", onMouseMove);
+
+        typesticky.onmouseup = function(){
+            document.removeEventListener("mousemove", onMouseMove);
+            typesticky.onmouseup = null;
+        };
+
+        typesticky.ondragstart = function(){
+            return false;
+        };
+    };
+</script>
+
+
+
 </body>
 </html>
