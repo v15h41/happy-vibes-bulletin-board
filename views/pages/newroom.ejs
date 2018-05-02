@@ -14,6 +14,8 @@
 <!-- Logo -->
 <h1 id="company_name">HAPPY VIBES CO.</h1>
 
+<p id="error_message"></p>
+
 <!-- Input Box -->
 <div id="workspace_frame">
 
@@ -21,7 +23,7 @@
     <form method="post" action="login.js">
 
         <p><img class="login_icons" src = "/img/profileImg.png"><input type="text" id="officeID" class="text_field" placeholder="Enter a workspace ID (no spaces)"/></p>
-        <p><img class="login_icons" src = "/img/profileImg.png"><input type="text" id="firstname" class="text_field" placeholder="Enter a workspace name"/></p>
+        <p><img class="login_icons" src = "/img/profileImg.png"><input type="text" id="workspacename" class="text_field" placeholder="Enter a workspace name"/></p>
     </form>
 
 
@@ -45,7 +47,7 @@
 
 
     <div class="login_control">
-        <input type="button" id="btn_login" value="Submit" onclick="login();"/>
+        <input type="button" id="btn_login" value="Submit" onclick="new_user_submit()"/>
 
     </div>
 </div>
@@ -61,7 +63,7 @@
 
 
     <div class="login_control">
-        <input type="button" id="btn_login" value="Submit" onclick="login();"/>
+        <input type="button" id="btn_login" value="Submit" onclick="submit_form()"/>
 
     </div>
 </div>

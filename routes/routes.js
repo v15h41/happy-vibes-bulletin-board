@@ -14,5 +14,7 @@ router.get('/newroom', controller.create_room);
 
 router.get('/bye', controller.sayGoodbye);
 
+router.post('/submit_user', controller.submit_user);
+
 
 module.exports = router;

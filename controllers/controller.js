@@ -1,15 +1,38 @@
-const soonInformation = require("../models/comingSoonInfo.js");
-
-module.exports.comingSoon = function(req, res){
-    //res.send("Happy Vibes Co.");
-    res.render("comingSoonInforTemp", {info: soonInformation[0]});
-};
+const mongoose = require('mongoose');
+const users_db = mongoose.model('users');
 
 module.exports.login = function(req, res){
     res.render('./pages/login', { forget_pwd_link: "/forget_pwd",
                                     signup_link: "/signup", newroom_link: "/newroom"});
 };
 
+module.exports.submit_user = function(req, res) {
+    var error = false;
+    for (key in req.body) {
+        if (req.body[key] == "") {
+            res.send("0Error: Please fill in all fields");
+            error = true;
+            break;
+        }
+    }
+
+    if (!error) {
+        var user = new users_db({
+            "firstname":req.body.firstname,
+            "lastname":req.body.lastname,
+            "email":req.body.email,
+            "password":req.body.password
+        });
+
+        user.save(function (err, newUser) {
+           if (!err) {
+               res.send("1");
+           } else {
+               res.send("0Error: Database error");
+           }
+        });
+    }
+}
 
 module.exports.forget_pwd = function(req, res){
     res.render('./pages/forget_pwd', { link: "/"});
