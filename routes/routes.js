@@ -22,5 +22,6 @@ router.post('/add_user', controller.add_user);
 
 router.post('/log_in', controller.log_in);
 
+router.get('/get_workspace_id/:workspaceID', controller.get_workspace_id);
 
 module.exports = router;

@@ -77,7 +77,7 @@ module.exports.log_in = function(req, res) {
     users_db.find({"email":req.body.email}, function(err, user_found) {
         if (user_found.length) {
             if (user_found[0].password == req.body.password) {
-                res.send("1");
+                res.send("1" + user_found[0]._id);
             } else {
                 res.send("0Error: Incorrect password");
             }
@@ -102,6 +102,16 @@ module.exports.add_user = function(req, res) {
         }
     });
 };
+
+module.exports.get_workspace_id = function(req, res) {
+    workspace_db.find({"workspaceID":req.params.workspaceID}, function(err, work) {
+        if (work.length) {
+            res.send("1" + work[0]._id);
+        } else {
+            res.send("0" + "Error: Workspace does not exist");
+        }
+    });
+}
 
 module.exports.forget_pwd = function(req, res){
     res.render('./pages/forget_pwd', { link: "/"});
