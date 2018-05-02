@@ -7,4 +7,4 @@ var workspace_users_schema = mongoose.Schema(
     }
 );
 
-mongoose.model('workspaces', workspace_users_schema);
+mongoose.model('workspace_users', workspace_users_schema);

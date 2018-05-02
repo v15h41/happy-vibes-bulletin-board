@@ -15,9 +15,14 @@
 }
 
 #error_message {
+    font-family: "Roboto Condensed";
     text-align: center;
     color: red;
-    margin-top: 120px;
+    position: absolute;
+    margin-top: -100px;
+    margin-left: -205px;
+    top:50%;
+    left:50%;
 }
 
 #create_account_frame {

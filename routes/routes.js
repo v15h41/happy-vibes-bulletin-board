@@ -16,5 +16,11 @@ router.get('/bye', controller.sayGoodbye);
 
 router.post('/submit_user', controller.submit_user);
 
+router.post('/submit_workspace', controller.submit_workspace);
+
+router.post('/add_user', controller.add_user);
+
+router.post('/log_in', controller.log_in);
+
 
 module.exports = router;
