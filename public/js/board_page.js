@@ -19,6 +19,9 @@ function create_event() {
     var event_name = document.getElementById("event_name_box");
     var location_box = document.getElementById("location_box");
     var date_box = document.getElementById("date_box");
+    var dt=Date.parse(date_box.value);
+
+    console.log(date_box.value);
     var time_from_box = document.getElementById("time_from_box");
     var time_to_box = document.getElementById("time_to_box");
 
@@ -90,7 +93,9 @@ function create_postit() {
     sticky.style.top = ran_height+'px';
     sticky.style.left = ran_width+'px';
     postitsdiv.appendChild(sticky);
+    postitsdiv.lastElementChild.className = "posted_sticky";
 }
+
 
 function w3_open() {
     document.getElementById("main").style.marginLeft = "25%";
