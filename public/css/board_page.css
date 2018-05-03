@@ -238,52 +238,52 @@ html, body {
 }
 
 #new_event {
-    font-family: "Roboto Condensed";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -190px;
-    padding-left: 5px;
     width: 400px;
-    height: 170px;
-    background-color: ghostwhite;
-    border-radius: 3px;
+    height: 150px;
+    padding: 13px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -30px;
+    margin-left: -220px;
+
+    background-color: rgba(218, 226, 237, 0.5);
+    border-radius: 10px;
+    text-align: center;
 }
 
-#event_name_box{
-    font-family: "Oswald";
-    margin-left: 4px;
-    margin-top: 4px;
+.text_field {
+    width: 340px;
+    height: 30px;
+    margin-top: -30px;
     border-radius: 4px;
+    border: 0;
+    outline:none !important;
+    background: transparent !important;
 }
 
-#location_box{
-    font-family: "Oswald";
-    margin-top: 4px;
-    margin-left: 25px;
-    border-radius:4px;
+.login_icons{
+    float:left;
+    height: 20px;
+    width: 20px;
 }
 
-#date_box{
-    font-family: "Oswald";
-    margin-top: 4px;
-    margin-left: 51px;
-    border-radius:4px;
-}
+#btn_login {
+    margin-top: 15px;
+    font-size: 14px;
+    font-family: "Roboto Condensed";
 
-#time_from_box{
-    font-family: "Oswald";
-    margin-top: 4px;
-    margin-left: 47px;
-    border-radius:4px;
-}
-
-#time_to_box{
-    font-family: "Oswald";
-    margin-top: 4px;
-    margin-left: 60px;
-    border-radius:4px;
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: black;
+    outline:none !important;
+    background-color: whitesmoke;
+    border-radius: 6px;
+    border: 0;
+    opacity: 0.6;
 }
 
 #typesticky {
