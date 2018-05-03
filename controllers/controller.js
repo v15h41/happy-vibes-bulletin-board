@@ -1,11 +1,23 @@
 const mongoose = require('mongoose');
 const users_db = mongoose.model('users');
 const workspace_db = mongoose.model('workspaces');
-const workspace_users_db = mongoose.model('workspace_users')
+const workspace_users_db = mongoose.model('workspace_users');
+const sessions_db = mongoose.model('sessions');
 
 module.exports.login = function(req, res){
-    res.render('./pages/login', { forget_pwd_link: "/forget_pwd",
-                                    signup_link: "/signup", newroom_link: "/newroom"});
+    if (req.cookies.sessionID != undefined) {
+        sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+            if (sessions_found.length) {
+                res.redirect('/board_page');
+            } else {
+                res.render('./pages/login', { forget_pwd_link: "/forget_pwd",
+                    signup_link: "/signup", newroom_link: "/newroom"});
+            }
+        });
+    } else {
+        res.render('./pages/login', { forget_pwd_link: "/forget_pwd",
+            signup_link: "/signup", newroom_link: "/newroom"});
+    }
 };
 
 module.exports.submit_user = function(req, res) {
@@ -77,7 +89,10 @@ module.exports.log_in = function(req, res) {
     users_db.find({"email":req.body.email}, function(err, user_found) {
         if (user_found.length) {
             if (user_found[0].password == req.body.password) {
-                res.send("1" + user_found[0]._id);
+                var session = new sessions_db({"userID":user_found[0]._id});
+                session.save(function (err, new_session) {
+                    res.cookie('sessionID', new_session._id).send("1" + user_found[0]._id);
+                });
             } else {
                 res.send("0Error: Incorrect password");
             }
@@ -113,17 +128,48 @@ module.exports.get_workspace_id = function(req, res) {
     });
 }
 
-module.exports.forget_pwd = function(req, res){
+module.exports.forget_pwd = function(req, res) {
     res.render('./pages/forget_pwd', { link: "/"});
 };
 
 module.exports.signup = function(req, res){
-    res.render('./pages/signup', { link: "/"});
+    if (req.cookies.sessionID != undefined) {
+        sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+            if (sessions_found.length) {
+                res.redirect('/board_page');
+            } else {
+                res.render('./pages/signup', { link: "/"});
+            }
+        });
+    }
 };
 
 module.exports.board_page = function(req, res){
-    res.render('./pages/board_page', { log_out_link: "/"});
+    if (req.cookies.sessionID != undefined) {
+        sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+            if (sessions_found.length) {
+                workspace_users_db.find({"userID":sessions_found[0].userID}, function(err, workspaceID_found) {
+                    workspace_db.find({"_id":workspaceID_found[0].workspaceID}, function(err, workspace_found) {
+                        res.render('./pages/board_page', { log_out_link: "/", workspace_name: workspace_found[0].workspace_name.toUpperCase()});
+                    });
+                });
+            } else {
+                res.redirect('/');
+            }
+        });
+    } else {
+        res.redirect('/');
+    }
 };
+
+module.exports.logout = function(req, res) {
+    sessions_db.remove({"_id":req.cookies.sessionID}, function(err) {
+        if (!err) {
+            res.clearCookie("sessionID");
+            res.redirect("/");
+        }
+    });
+}
 
 module.exports.create_room = function(req, res) {
   res.render('./pages/newroom');

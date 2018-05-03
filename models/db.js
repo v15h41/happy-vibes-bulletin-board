@@ -11,3 +11,4 @@ mongoose.connect('mongodb://happyuser:happyvibes@ds159033.mlab.com:59033/happyvi
 require('./users.js');
 require('./workspaces.js');
 require('./workspace_users.js');
+require('./sessions.js')
