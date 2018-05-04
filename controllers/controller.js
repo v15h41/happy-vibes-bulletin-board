@@ -99,7 +99,7 @@ module.exports.log_in = function(req, res) {
         } else {
             res.send("0Error: Email does not exist");
         }
-    })
+    });
 };
 
 module.exports.add_user = function(req, res) {
@@ -141,6 +141,8 @@ module.exports.signup = function(req, res){
                 res.render('./pages/signup', { link: "/"});
             }
         });
+    } else {
+        res.render('./pages/signup', { link: "/"});
     }
 };
 
