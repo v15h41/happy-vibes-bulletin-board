@@ -52,7 +52,7 @@ module.exports.submit_user = function(req, res) {
 
 };
 
-mobdule.exports.submit_post_it = function(req, res) {
+module.exports.submit_post_it = function(req, res) {
     for (key in req.body) {
         if (req.body[key] == "") {
             res.send("0Error: Please fill in all fields");
