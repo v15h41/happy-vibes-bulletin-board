@@ -73,6 +73,27 @@ function create_event() {
 var post_count = 0;
 
 function create_postit() {
+    var data_pairs = [];
+    var url_encoded_data = "";
+
+    data_pairs.push(encodeURIComponent("post_it_content") + '=' + encodeURIComponent(document.getElementById("sticky_submit_text").value));
+    data_pairs.push(encodeURIComponent("anonymous") + '=' + encodeURIComponent(document.getElementById("no").value));
+
+    url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
+
+    var XHR = new XMLHttpRequest();
+
+    XHR.open('POST', '/submit_post_it');
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send(url_encoded_data);
+
+    /*
+    XHR.onreadystatechange = function() {
+        if (XHR.readyState == XMLHttpRequest.DONE) {
+
+        }
+    }*/
+
     post_count++;
     var text = document.getElementById("sticky_submit_text").innerText;
     exit_note_submit();
@@ -99,6 +120,7 @@ function create_postit() {
     postitsdiv.appendChild(sticky);
 }
 
+/*
 <!-- enlarge posts when hover -->
 $(document).ready(function(){
     $(".posted_sticky").hover(function(){
@@ -106,7 +128,7 @@ $(document).ready(function(){
     },function(){
         $("p").css("background-color","pink");
     });
-});
+});*/
 
 
 <!-- Sidebar control -->
