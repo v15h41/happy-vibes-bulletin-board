@@ -30,6 +30,10 @@ router.get('/logout', controller.logout);
 
 router.get('/my_account', controller.account_page);
 
+
 router.get('/get_post_its', controller.get_post_its);
+
+router.get('/welcome', controller.welcome);
+
 
 module.exports = router;

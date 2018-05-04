@@ -1,3 +1,4 @@
+
 function open_new_note_overlay() {
     document.getElementById("note_submit_overlay").style.display = "block";
 }
@@ -104,6 +105,12 @@ function generate_postit(text) {
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
+    // create a hide button for hiding posts, shown when hover
+    hide_button = document.createElement("img");
+    hide_button.className = "hide_posts_button";
+    hide_button.src = "/img/cross.png";
+    hide_button.style.display = "none";
+    postitsdiv.appendChild(hide_button);
     var ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 + 50 ;
     var ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
     console.log(ran_height, ran_height+'px');
@@ -140,13 +147,16 @@ function create_postit() {
 
 /*
 <!-- enlarge posts when hover -->
-$(document).ready(function(){
-    $(".posted_sticky").hover(function(){
-        $(".posted_sticky").css("background-color","yellow");
-    },function(){
-        $("p").css("background-color","pink");
-    });
-});*/
+
+
+/**
+ * $(".posted_sticky").hover(function() {
+    $(".hide_posts_button").show();
+    },function () {
+    $(".hide_posts_button").hide();
+});
+ */
+
 
 
 <!-- Sidebar control -->
@@ -155,6 +165,7 @@ function w3_open() {
     document.getElementById("mySidebar").style.width = "25%";
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("openNav").style.display = 'none';
+    document.getElementById("true").style.display = "block"
 }
 function w3_close() {
     document.getElementById("main").style.marginLeft = "0%";

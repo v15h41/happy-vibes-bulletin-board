@@ -167,6 +167,15 @@ html, body {
     height: 250px;
 }
 
+.posted_sticky:hover{
+    transform: scale(1.2);
+
+}
+
+
+
+
+
 /*
 .posted_sticky:hover{
     background-color: whitesmoke;
