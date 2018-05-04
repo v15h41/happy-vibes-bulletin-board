@@ -58,6 +58,16 @@ module.exports.submit_user = function(req, res) {
 
 };
 
+module.exports.get_post_its = function(req, res) {
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+        if (sessions_found.length) {
+            post_its_db.find({"workspaceID":req.cookies.workspaceID}, function(err, post_its_found) {
+                res.send(post_its_found);
+            });
+        }
+    });
+};
+
 module.exports.submit_post_it = function(req, res) {
     for (key in req.body) {
         if (req.body[key] == "") {
@@ -68,25 +78,21 @@ module.exports.submit_post_it = function(req, res) {
 
     sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
         if (sessions_found.length) {
-            workspace_users_db.find({"userID":sessions_found[0].userID}, function(err, workspaceID_found) {
-                workspace_db.find({"_id":workspaceID_found[0].workspaceID}, function(err, workspace_found) {
-                    var post_it = post_its_db({
-                        "workspaceID":workspace_found[0]._id,
-                        "userID":sessions_found[0].userID,
-                        "postItContent":req.body.post_it_content,
-                        "anonymous":req.body.anonymous
-                    });
-
-                    post_it.save(function (err, new_post_it) {
-                        if (!err) {
-                            res.send("1" + new_post_it._id);
-                        } else {
-                            res.send("0Error: Database error");
-                        }
-                    });
-
+                var post_it = post_its_db({
+                    "workspaceID":req.cookies.workspaceID,
+                    "userID":sessions_found[0].userID,
+                    "postItContent":req.body.post_it_content,
+                    "anonymous":req.body.anonymous
                 });
-            });
+
+                post_it.save(function (err, new_post_it) {
+                    if (!err) {
+                        res.send("1" + new_post_it._id);
+                    } else {
+                        res.send("0Error: Database error");
+                    }
+                });
+
         } else {
             res.send("0Error: Database error");
         }
@@ -133,7 +139,11 @@ module.exports.log_in = function(req, res) {
             if (user_found[0].password == req.body.password) {
                 var session = new sessions_db({"userID":user_found[0]._id});
                 session.save(function (err, new_session) {
-                    res.cookie('sessionID', new_session._id).send("1" + user_found[0]._id);
+                    workspace_users_db.find({"userID":user_found[0]._id}, function(err, workspaceID_found) {
+                        console.log(workspaceID_found);
+                        res.cookie('workspaceID',workspaceID_found[0]._id);
+                        res.cookie('sessionID', new_session._id).send("1" + user_found[0]._id);
+                    });
                 });
             } else {
                 res.send("0Error: Incorrect password");
