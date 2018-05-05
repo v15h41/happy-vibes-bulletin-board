@@ -20,6 +20,12 @@ module.exports.login = function(req, res){
     }
 };
 
+module.exports.account_page = function(req, res) {
+    res.render('./pages/accountpage', {my_account: "/my_account"});
+};
+
+
+
 module.exports.submit_user = function(req, res) {
     for (key in req.body) {
         if (req.body[key] == "") {
@@ -74,7 +80,7 @@ module.exports.submit_workspace = function(req, res) {
             workspace.save(function (err, new_workspace) {
                 if (!err) {
                     res.send("1" + new_workspace._id);
-                } else {
+                }  else {
                     res.send("0Error: Database error");
                 }
             });
@@ -177,9 +183,7 @@ module.exports.create_room = function(req, res) {
   res.render('./pages/newroom');
 };
 
-module.exports.account_page = function(req, res) {
-    res.render('./pages/accountpage');
-}
+
 
 module.exports.sayGoodbye = function(req, res) {
     res.send("Goodbye");
