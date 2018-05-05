@@ -104,12 +104,11 @@ body {
     border-bottom: 1px solid ghostwhite;
 }
 #profile_picture{
-    background-color: red;
     margin-left: 42%;
-    min-height: 50%;
+    min-height: 55%;
     max-height: 80%;
-    min-width: 16%;
-    max-width: 20%;
+    min-width: 12%;
+    max-width: 12%;
 }
 .personal_details {
     grid-column: 1/5;

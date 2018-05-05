@@ -22,7 +22,7 @@ module.exports.login = function(req, res){
 };
 
 module.exports.account_page = function(req, res) {
-    var is_admin = "false";
+    var is_admin = "true";
     if (req.cookies.sessionID != undefined) {
         sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
             if (sessions_found.length) {
