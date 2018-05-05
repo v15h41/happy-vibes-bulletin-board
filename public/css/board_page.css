@@ -168,7 +168,7 @@ html, body {
     height: 250px;
 }
 
-
+/*
 .posted_sticky:hover{
     background-color: whitesmoke;
     position: absolute;
@@ -184,7 +184,7 @@ html, body {
     margin-left: -10px;
 
 }
-
+*/
 
 .postits {
     grid-area: postits;
