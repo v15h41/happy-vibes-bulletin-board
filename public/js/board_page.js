@@ -86,6 +86,12 @@ function create_postit() {
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
+    // create a hide button for hiding posts, shown when hover
+    hide_button = document.createElement("img");
+    hide_button.className = "hide_posts_button";
+    hide_button.src = "/img/cross.png";
+    hide_button.style.display = "none";
+    postitsdiv.appendChild(hide_button);
     var ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 + 50 ;
     var ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
     console.log(ran_height, ran_height+'px');
@@ -96,6 +102,19 @@ function create_postit() {
     postitsdiv.lastElementChild.className = "posted_sticky";
 
 }
+
+<!-- enlarge posts when hover -->
+/**
+ * $(".posted_sticky").hover(function() {
+    $(".hide_posts_button").show();
+    },function () {
+    $(".hide_posts_button").hide();
+});
+ */
+
+
+
+
 
 
 function w3_open() {
