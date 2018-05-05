@@ -163,7 +163,6 @@ html, body {
     -webkit-transition: all 0.6s ease; /* Safari and Chrome */
     -moz-transition: all 0.6s ease;    /*Firefox*/
     -o-transition: all 0.6s ease;      /*Opera*/
-    position:relative;
     width: 250px;
     height: 250px;
 }

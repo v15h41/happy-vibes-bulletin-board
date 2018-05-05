@@ -3,6 +3,7 @@ const users_db = mongoose.model('users');
 const workspace_db = mongoose.model('workspaces');
 const workspace_users_db = mongoose.model('workspace_users');
 const sessions_db = mongoose.model('sessions');
+const post_its_db = mongoose.model('post_its');
 
 module.exports.login = function(req, res){
     if (req.cookies.sessionID != undefined) {
@@ -55,6 +56,41 @@ module.exports.submit_user = function(req, res) {
         }
     });
 
+};
+
+module.exports.submit_post_it = function(req, res) {
+    for (key in req.body) {
+        if (req.body[key] == "") {
+            res.send("0Error: Please fill in all fields");
+            return;
+        }
+    }
+
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+        if (sessions_found.length) {
+            workspace_users_db.find({"userID":sessions_found[0].userID}, function(err, workspaceID_found) {
+                workspace_db.find({"_id":workspaceID_found[0].workspaceID}, function(err, workspace_found) {
+                    var post_it = post_its_db({
+                        "workspaceID":workspace_found[0]._id,
+                        "userID":sessions_found[0].userID,
+                        "postItContent":req.body.post_it_content,
+                        "anonymous":req.body.anonymous
+                    });
+
+                    post_it.save(function (err, new_post_it) {
+                        if (!err) {
+                            res.send("1" + new_post_it._id);
+                        } else {
+                            res.send("0Error: Database error");
+                        }
+                    });
+
+                });
+            });
+        } else {
+            res.send("0Error: Database error");
+        }
+    });
 };
 
 module.exports.submit_workspace = function(req, res) {

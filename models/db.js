@@ -12,3 +12,4 @@ require('./users.js');
 require('./workspaces.js');
 require('./workspace_users.js');
 require('./sessions.js');
+require('./post_its');

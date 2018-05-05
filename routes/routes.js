@@ -22,6 +22,8 @@ router.post('/add_user', controller.add_user);
 
 router.post('/log_in', controller.log_in);
 
+router.post('/submit_post_it', controller.submit_post_it);
+
 router.get('/get_workspace_id/:workspaceID', controller.get_workspace_id);
 
 router.get('/logout', controller.logout);
