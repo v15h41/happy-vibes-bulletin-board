@@ -30,4 +30,6 @@ router.get('/logout', controller.logout);
 
 router.get('/my_account', controller.account_page);
 
+router.get('/welcome', controller.welcome);
+
 module.exports = router;

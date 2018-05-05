@@ -251,3 +251,7 @@ module.exports.sayGoodbye = function(req, res) {
     res.send("Goodbye");
 };
 
+
+module.exports.welcome = function(req, res) {
+    res.render('./pages/welcome_page', { link: "/"});
+};
