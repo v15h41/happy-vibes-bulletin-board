@@ -1,3 +1,4 @@
+
 function open_new_note_overlay() {
     document.getElementById("note_submit_overlay").style.display = "block";
 }
@@ -128,6 +129,7 @@ function w3_open() {
     document.getElementById("mySidebar").style.width = "25%";
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("openNav").style.display = 'none';
+    document.getElementById("true").style.display = "block"
 }
 function w3_close() {
     document.getElementById("main").style.marginLeft = "0%";

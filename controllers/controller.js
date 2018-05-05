@@ -147,12 +147,16 @@ module.exports.signup = function(req, res){
 };
 
 module.exports.board_page = function(req, res){
+    var is_admin = "false";
     if (req.cookies.sessionID != undefined) {
         sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
             if (sessions_found.length) {
                 workspace_users_db.find({"userID":sessions_found[0].userID}, function(err, workspaceID_found) {
+                    if(workspaceID_found[0].user_role == "admin"){
+                        is_admin = "true";
+                    }
                     workspace_db.find({"_id":workspaceID_found[0].workspaceID}, function(err, workspace_found) {
-                        res.render('./pages/board_page', { log_out_link: "/", workspace_name: workspace_found[0].workspace_name.toUpperCase()});
+                        res.render('./pages/board_page', { log_out_link: "/", workspace_name: workspace_found[0].workspace_name.toUpperCase(), isAdmin:is_admin});
                     });
                 });
             } else {
