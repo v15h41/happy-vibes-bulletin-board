@@ -70,7 +70,10 @@ function create_event() {
     exit_event_submit();
 }
 
+var post_count = 0;
+
 function create_postit() {
+    post_count++;
     var text = document.getElementById("sticky_submit_text").innerText;
     exit_note_submit();
 
@@ -94,10 +97,20 @@ function create_postit() {
     sticky.style.left = ran_width+'px';
     postitsdiv.appendChild(sticky);
     postitsdiv.lastElementChild.className = "posted_sticky";
-
+    postitsdiv.lastElementChild.id = "posted_sticky" + post_count;
 }
 
+<!-- enlarge posts when hover -->
+$(document).ready(function(){
+    $(".posted_sticky").hover(function(){
+        $(".posted_sticky").css("background-color","yellow");
+    },function(){
+        $("p").css("background-color","pink");
+    });
+});
 
+
+<!-- Sidebar control -->
 function w3_open() {
     document.getElementById("main").style.marginLeft = "25%";
     document.getElementById("mySidebar").style.width = "25%";
@@ -109,4 +122,6 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("openNav").style.display = "inline-block";
 }
+
+
 
