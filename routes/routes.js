@@ -26,4 +26,6 @@ router.get('/get_workspace_id/:workspaceID', controller.get_workspace_id);
 
 router.get('/logout', controller.logout);
 
+router.get('/my_account', controller.account_page);
+
 module.exports = router;
