@@ -66,3 +66,15 @@ html, body {
         opacity: 1;
     }
 }
+
+
+
+#account_name {
+    font-family: "Oswald";
+    margin-left: 10px;
+    font-weight: 400;
+    font-size: 3em;
+    text-align: left;
+    color: ghostwhite;
+    margin-top: -5px;
+}
