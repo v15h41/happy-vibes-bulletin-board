@@ -94,6 +94,7 @@ function create_postit() {
     sticky.style.left = ran_width+'px';
     postitsdiv.appendChild(sticky);
     postitsdiv.lastElementChild.className = "posted_sticky";
+
 }
 
 
