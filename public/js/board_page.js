@@ -107,15 +107,7 @@ function create_postit() {
 }
 
 <!-- enlarge posts when hover -->
-<<<<<<< HEAD
-$(document).ready(function(){
-    $(".posted_sticky").hover(function(){
-        $(".posted_sticky").css("background-color","yellow");
-    },function(){
-        $("p").css("background-color","pink");
-    });
-});
-=======
+
 /**
  * $(".posted_sticky").hover(function() {
     $(".hide_posts_button").show();
@@ -127,7 +119,7 @@ $(document).ready(function(){
 
 
 
->>>>>>> hide_messages
+
 
 
 <!-- Sidebar control -->
