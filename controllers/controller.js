@@ -177,6 +177,10 @@ module.exports.create_room = function(req, res) {
   res.render('./pages/newroom');
 };
 
+module.exports.account_page = function(req, res) {
+    res.render('./pages/accountpage');
+}
+
 module.exports.sayGoodbye = function(req, res) {
     res.send("Goodbye");
 };
