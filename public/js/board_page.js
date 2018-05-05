@@ -83,7 +83,8 @@ function create_postit() {
     console.log(document.getElementById('postits').offsetHeight);
     console.log(document.getElementById('postits_parent').offsetWidth);
     var sticky = document.createElement("DIV");
-    sticky.className = "sticky";
+    sticky.className = "posted_sticky";
+    sticky.id = "posted_sticky" + post_count;
     var p = document.createElement("P");
     p.appendChild(document.createTextNode(text));
     sticky_text = document.createElement("DIV");
@@ -103,8 +104,6 @@ function create_postit() {
     sticky.style.top = ran_height+'px';
     sticky.style.left = ran_width+'px';
     postitsdiv.appendChild(sticky);
-    postitsdiv.lastElementChild.className = "posted_sticky";
-    postitsdiv.lastElementChild.id = "posted_sticky" + post_count;
 }
 
 <!-- enlarge posts when hover -->
