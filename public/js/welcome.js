@@ -38,7 +38,7 @@ function generate_workspace(workspace_name, workspace_id) {
     workspace.onclick = change_workspace;
     var p = document.createTextNode(workspace_name);
     p.className = "workspace-name";
-    console.log("var p created");
+    console.log(p.className);
     workspace_text = document.createElement("DIV");
     workspace_text.ID = workspace_id;
     workspace_text.onclick = function() {change_workspace(workspace_text.ID)};
