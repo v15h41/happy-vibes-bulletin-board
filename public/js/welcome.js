@@ -9,7 +9,7 @@ function open_workspace_overlay() {
 }
 
 function get_workspaces() {
-    var XHR = XMLHttpRequest();
+    var XHR = new XMLHttpRequest();
     XHR.open('GET', '/get_workspaces');
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send();
@@ -17,7 +17,6 @@ function get_workspaces() {
     XHR.onreadystatechange = function() {
         if (XHR.readyState == XMLHttpRequest.DONE) {
             var workspaces = JSON.parse(XHR.responseText);
-
             generate_workspaces(workspaces, workspaces.length);
         }
     }
@@ -27,18 +26,19 @@ function get_workspaces() {
 
 function generate_workspaces(workspaces, workspacesLength){
     for (var i= 0; i < workspacesLength; i++){
-        console.log(i);
+        console.log(workspaces[i])
+        generate_workspace(workspaces[i].workspace_name, workspaces[i]._id)
     }
 }
 
-function generate_workspace() {
+function generate_workspace(workspace_name, workspace_id) {
     var workplaceoptiondiv = document.getElementById('workplace_options');
     console.log("Workplaceoptiondiv created");
     var workspace = document.createElement("DIV");
     console.log("Workspace created");
     workspace.className = "workspace-option";
-    workspace.id = String(2);
-    var p = document.createTextNode("testing workspace");
+    workspace.id = workspace_id;
+    var p = document.createTextNode(workspace_name);
     console.log("var p created");
     workspace_text = document.createElement("DIV");
     workspace_text.className = "workspace-option";
