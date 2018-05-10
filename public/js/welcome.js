@@ -40,8 +40,8 @@ function generate_workspace(workspace_name, workspace_id) {
     p.className = "workspace-name";
     console.log(p.className);
     workspace_text = document.createElement("DIV");
-    workspace_text.ID = workspace_id;
-    workspace_text.onclick = function() {change_workspace(workspace_text.ID)};
+    workspace_text.id = workspace_id;
+    workspace_text.onclick = function() {change_workspace(workspace_id)};
     workspace_text.className = "workspace-option";
     workspace_text.appendChild(p);
     console.log("p appended to workspace_text");
@@ -50,6 +50,9 @@ function generate_workspace(workspace_name, workspace_id) {
 }
 
 function change_workspace(workspace_ID) {
+    var XHR = new XMLHttpRequest();
+    XHR.open("POST", "/")
+
     console.log(workspace_ID);
 }
 

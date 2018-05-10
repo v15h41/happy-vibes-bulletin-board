@@ -146,6 +146,10 @@ module.exports.get_workspaces = function(req, res) {
     });
 };
 
+module.exports.change_workspace_cookie = function(req, res) {
+    res.cookie('workspaceID', req.body.workspaceID);
+};
+
 module.exports.get_user_name = function(req, res) {
     console.log(req.params);
     users_db.find({"_id":req.params.userID}, function(err, user_found) {
