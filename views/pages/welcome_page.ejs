@@ -6,16 +6,38 @@
     <% include ../partials/welcome_page %>
 </head>
 <body>
+
+
+
 <div class = "page" id = "main">
     <div class = "header">
         <div id = "company_name">
             HAPPY VIBES CO.
         </div>
     </div>
-    <div class = "motivational_message">
-        HOPE YOU HAVE A GREAT DAY AT THE OFFICE BOB!
+    <div id = "motivational_message">
+        HOPE YOU HAVE A GREAT DAY AT THE OFFICE <%=firstname%>!
     </div>
+    <div id="login_control">
+        <input type="button" id="btn_login" value="Continue" onclick="login();"/>
     </div>
+    <div id = "workplace_overlay">
+        Which workplace will you be with today?
+        <div id = "workplace_options">
+            <div id = "option-one" onclick() = > </div>
+            <div id = "option-two" onclick() = > </div>
+
+        </div>
+    </div>
+
 </div>
+
+
+
 </body>
+<!--
+<% var workspacesEJS = workspaces; %>
+<% var workspacesLengthEJS = workspaces.length; %>
+ var workspacesJS = <%=workspacesEJS[0]["_id"] %>;
+ var workspacesLengthJS = <%=workspacesLengthEJS %>;-->
 </html>

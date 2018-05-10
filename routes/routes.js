@@ -24,16 +24,26 @@ router.post('/log_in', controller.log_in);
 
 router.post('/submit_post_it', controller.submit_post_it);
 
+router.post('/submit_event', controller.submit_event);
+
 router.get('/get_workspace_id/:workspaceID', controller.get_workspace_id);
 
 router.get('/logout', controller.logout);
 
 router.get('/my_account', controller.account_page);
 
+router.get('/admin_page', controller.admin_page)
 
 router.get('/get_post_its', controller.get_post_its);
 
+router.get('/get_events', controller.get_events);
+
 router.get('/welcome', controller.welcome);
 
+router.get('/get_workspaces/:workspaceID', controller.get_workspace_name);
+
+router.get('/get_user_name/:userID', controller.get_user_name);
+
+router.post('/delete_post_it', controller.delete_post_it)
 
 module.exports = router;
