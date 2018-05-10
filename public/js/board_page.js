@@ -134,6 +134,7 @@ function create_postit() {
     XHR.open('POST', '/submit_post_it');
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
+    this.generate_postit();
 
     /*
     XHR.onreadystatechange = function() {
