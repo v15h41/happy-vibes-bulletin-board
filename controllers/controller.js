@@ -147,7 +147,10 @@ module.exports.get_workspaces = function(req, res) {
 };
 
 module.exports.change_workspace_cookie = function(req, res) {
+    console.log(req.body);
+    res.clearCookie("workspaceID");
     res.cookie('workspaceID', req.body.workspaceID);
+    res.send();
 };
 
 module.exports.get_user_name = function(req, res) {
@@ -349,7 +352,7 @@ module.exports.board_page = function(req, res){
     if (req.cookies.sessionID != undefined) {
         sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
             if (sessions_found.length) {
-                workspace_users_db.find({"userID":sessions_found[0].userID}, function(err, workspaceID_found) {
+                workspace_users_db.find({"userID":sessions_found[0].userID, "workspaceID":req.cookies.workspaceID}, function(err, workspaceID_found) {
                     if(workspaceID_found[0].user_role == "admin"){
                         is_admin = "true";
                     }
