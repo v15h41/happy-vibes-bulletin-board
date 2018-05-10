@@ -128,10 +128,12 @@ html, body{
     display: flex:
     align-items: space-between;
 }
-#option-one {
+
+.workspace-option {
     display: inline-flex;
     height: 290px;
     width: 290px;
+    color: black;
     background-color: white;
     margin: 20px;
 }
