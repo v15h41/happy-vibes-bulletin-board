@@ -70,7 +70,7 @@ html, body{
 
 #company_name {
     font-family: "Oswald";
-    margin-left: 5%;
+    margin-left: 1%;
     font-weight: 400;
     font-size: 3em;
     text-align: left;
@@ -113,7 +113,7 @@ html, body{
 
 #workplace_overlay {
     font-family: "Roboto Condensed";
-    font-size: 700%;
+    font-size: 500%;
     text-align: center;
     color: ghostwhite;
     position: fixed; /* Sit on top of the page content */
