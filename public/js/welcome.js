@@ -57,11 +57,16 @@ function generate_workspace(workspace_name, workspace_id) {
 }
 
 function change_workspace(workspace_ID) {
-    exit_workspace_overlay();
-    var XHR = new XMLHttpRequest();
-    XHR.open("POST", "/")
 
-    console.log(workspace_ID);
+    var XHR = new XMLHttpRequest();
+    XHR.open("POST", "/change_workspace_cookie");
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send("workspaceID="+workspace_ID);
+
+    XHR.onreadystatechange = function() {
+        window.location.href="/board_page";
+    }
+
 }
 
 function exit_workspace_overlay() {
