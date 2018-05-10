@@ -130,25 +130,30 @@ html, body{
 }
 
 .workspace-option {
-    display: inline-flex;
+    display: inline-block;
     height: 290px;
     width: 290px;
-    color: black;
     background-color: white;
     margin: 20px;
-}
-
-.workspace-name {
     font-family: "Roboto Condensed";
-    font-size: 100%;
+    font-size: 50%;
     text-align: center;
-    color: ghostwhite;
+    border-radius: 5px;
+    color: black;
+    vertical-align: middle;
+    animation: create_new 0.7s ease;
+    opacity: 0.7;
 }
 
-#option-two{
-    display: inline-flex;
-    height: 290px;
-    width: 290px;
-    margin: 20px;
-    background-color: white;
+.workspace-option:hover{
+    opacity: 1;
+}
+
+@keyframes create_new{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.7;
+    }
 }

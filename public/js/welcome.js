@@ -40,7 +40,7 @@ function generate_workspace(workspace_name, workspace_id) {
     workspace.id = workspace_id;
     var p = document.createTextNode(workspace_name);
     p.className = "workspace-name";
-    console.log("var p created");
+    console.log(p.className);
     workspace_text = document.createElement("DIV");
     workspace_text.className = "workspace-option";
     workspace_text.appendChild(p);
