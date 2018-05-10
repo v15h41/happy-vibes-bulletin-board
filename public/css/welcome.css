@@ -138,6 +138,13 @@ html, body{
     margin: 20px;
 }
 
+.workspace-name {
+    font-family: "Roboto Condensed";
+    font-size: 100%;
+    text-align: center;
+    color: ghostwhite;
+}
+
 #option-two{
     display: inline-flex;
     height: 290px;

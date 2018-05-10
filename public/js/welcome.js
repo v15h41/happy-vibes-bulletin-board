@@ -22,6 +22,7 @@ function generate_workspace() {
     workspace.className = "workspace-option";
     workspace.id = String(2);
     var p = document.createTextNode("testing workspace");
+    p.className = "workspace-name";
     console.log("var p created");
     workspace_text = document.createElement("DIV");
     workspace_text.className = "workspace-option";
