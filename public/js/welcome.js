@@ -1,5 +1,12 @@
-function login() {
-    window.location.href="/board_page";
+var workspaces = []
+
+function login(numWorkspaces) {
+    if (workspaces.length > 1){
+        open_workspace_overlay()
+    }
+    else{
+        window.location.href="/board_page";
+    }
 }
 
 function open_workspace_overlay() {
@@ -16,7 +23,7 @@ function get_workspaces() {
 
     XHR.onreadystatechange = function() {
         if (XHR.readyState == XMLHttpRequest.DONE) {
-            var workspaces = JSON.parse(XHR.responseText);
+            workspaces = JSON.parse(XHR.responseText);
             generate_workspaces(workspaces, workspaces.length);
         }
     }
@@ -50,6 +57,7 @@ function generate_workspace(workspace_name, workspace_id) {
 }
 
 function change_workspace(workspace_ID) {
+    exit_workspace_overlay();
     var XHR = new XMLHttpRequest();
     XHR.open("POST", "/")
 
