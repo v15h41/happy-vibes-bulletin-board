@@ -70,7 +70,7 @@ html, body{
 
 #company_name {
     font-family: "Oswald";
-    margin-left: 10px;
+    margin-left: 1%;
     font-weight: 400;
     font-size: 3em;
     text-align: left;
@@ -78,12 +78,88 @@ html, body{
     margin-top: -5px;
 }
 
-.motivational_message {
+#motivational_message {
     font-family:  "Oswald";
+    margin-top: 8%;
     margin-left: 20%;
     margin-right: 20%;
     font-size: 400%;
     font-weight: 300;
     color: whitesmoke;
     text-align: center;
+}
+
+#btn_login {
+    font-size: 14px;
+    font-family: "Roboto Condensed";
+    margin-top: 4%;
+    margin-left: 45%;
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: black;
+    outline:none !important;
+    background-color: whitesmoke;
+    border-radius: 6px;
+    border: 0;
+    opacity: 0.6;
+}
+
+#btn_login:hover {
+    opacity: 1;
+}
+
+
+#workplace_overlay {
+    font-family: "Roboto Condensed";
+    font-size: 500%;
+    text-align: center;
+    color: ghostwhite;
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    padding-top: 4%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 10; /* Specify a stack order in case you're using a different order for other elements */
+    animation: create_new 1s ease;
+}
+
+#workplace_options{
+    display: flex:
+    align-items: space-between;
+}
+
+.workspace-option {
+    display: inline-block;
+    height: 290px;
+    width: 290px;
+    background-color: white;
+    margin: 20px;
+    font-family: "Roboto Condensed";
+    font-size: 50%;
+    text-align: center;
+    border-radius: 5px;
+    color: black;
+    vertical-align: middle;
+    animation: create_new 1.5s ease;
+    opacity: 0.7;
+}
+
+.workspace-option:hover{
+    opacity: 1;
+}
+
+@keyframes create_new{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.7;
+    }
 }

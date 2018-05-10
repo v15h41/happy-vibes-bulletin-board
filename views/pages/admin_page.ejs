@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Account</title>
+    <% include ../partials/admin_page %>
+</head>
+<body>
+
+<!-- Sidebar -->
+<% include ../partials/sidebar %>
+
+
+<article = "page" id = "main">
+    <nav class = "header">
+        <figure id = "account_name">
+            Admin for <%= workspace_name%>
+        </figure>
+    </nav>
+
+    <div class = "wrapper">
+        <div class = "account_photo">
+            <img id = "profile_picture" src = "/img/profileImg.png">
+        </div>
+        <div class = "view_posts">
+            <h1> Posts Table</h1>
+            <div id = "posts_table">
+
+            </div>
+        </div>
+        <div class = "view_events">
+            <h1> Events Table</h1>
+            <div id = "events_table">
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>
