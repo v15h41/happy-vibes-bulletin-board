@@ -108,14 +108,47 @@ module.exports.submit_user = function(req, res) {
 };
 
 module.exports.get_post_its = function(req, res) {
+
+
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found)   {
+        if (sessions_found.length) {
+            post_its_db.aggregate([
+                { "$match": {"workspaceID": mongoose.Types.ObjectId(req.cookies.workspaceID)}},
+                { "$lookup":
+                    {
+                        "from": "users",
+                        "localField": "userID",
+                        "foreignField" : "_id",
+                        "as": "user"
+                    }},
+                { "$project": {
+                    "_id" : 1,
+                    "anonymous" : 1,
+                        "postItContent": 1,
+                        "userID" : 1,
+                        "workspaceID" : 1,
+                        "user.firstname" : 1,
+                        "user.lastname" : 1
+                }
+                }],function(err, post_its_found) {
+                    console.log(post_its_found);
+                    res.send(post_its_found);
+                }
+
+            );
+        }
+    });
+
+/*
     sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
         if (sessions_found.length) {
             post_its_db.find({"workspaceID":req.cookies.workspaceID}, function(err, post_its_found) {
                 res.send(post_its_found);
             });
         }
-    });
+    });*/
 };
+
 
 module.exports.get_workspaces = function(req, res) {
 
