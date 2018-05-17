@@ -135,7 +135,11 @@ function get_postits() {
                     console.log("this should shut up");
                     console.log(posts_on_page);
                     console.log(posts_on_page.indexOf(post_its[i]));
-                    var result = generate_postit(post_its[i].postItContent, post_its[i]._id, "name");
+                    var name = "";
+                    if (post_its[i].anonymous == "no") {
+                        name = post_its[i].user[0].firstname;
+                    }
+                    var result = generate_postit(post_its[i].postItContent, post_its[i]._id, name);
                     if (!result) {
 
                         broke = true;
@@ -189,7 +193,10 @@ function generate_postit(postit_text, postit_id, postit_name) {
     //postitsdiv.appendChild(hide_button);
 
         var name = document.createElement("P");
-        name.appendChild(document.createTextNode("- Jim"));
+        if (postit_name.length != 0) {
+            name.appendChild(document.createTextNode("- " + postit_name));
+        }
+
         name.className = "sticky_author";
         sticky.appendChild(name);
 
