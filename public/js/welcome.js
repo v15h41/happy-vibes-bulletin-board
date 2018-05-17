@@ -1,6 +1,6 @@
 var workspaces = []
 
-function login(numWorkspaces) {
+function login() {
     if (workspaces.length > 1){
         open_workspace_overlay()
     }
@@ -66,7 +66,6 @@ function change_workspace(workspace_ID) {
     XHR.onreadystatechange = function() {
         window.location.href="/board_page";
     }
-
 }
 
 function exit_workspace_overlay() {

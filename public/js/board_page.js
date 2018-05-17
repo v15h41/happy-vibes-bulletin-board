@@ -1,3 +1,16 @@
+var is_admin;
+
+function isAdmin(admin) {
+    console.log(admin);
+    if (admin == "true"){
+        var is_admin = true;
+    }
+    else{
+        var is_admin = false;
+    }
+}
+
+
 
 function open_new_note_overlay() {
     document.getElementById("note_submit_overlay").style.display = "block";
@@ -212,12 +225,14 @@ function generate_postit(postit_text, postit_id, postit_name) {
     var sticky = document.createElement("DIV");
     sticky.className = "posted_sticky";
     // create a hide button for hiding posts, shown when hover
-    hide_button = document.createElement("img");
-    hide_button.className = "hide_posts_button";
-    hide_button.src = "/img/cross.png";
-    hide_button.onclick = function() {delete_post_it(postit_id)};
-    hide_button.style.display = "block";
-    sticky.appendChild(hide_button);
+    if (is_admin == true) {
+        hide_button = document.createElement("img");
+        hide_button.className = "hide_posts_button";
+        hide_button.src = "/img/cross.png";
+        hide_button.onclick = function() {delete_post_it(postit_id)};
+        hide_button.style.display = "block";
+        sticky.appendChild(hide_button);
+    }
     sticky.id = postit_id;
     var p = document.createElement("P");
     p.appendChild(document.createTextNode(text));
