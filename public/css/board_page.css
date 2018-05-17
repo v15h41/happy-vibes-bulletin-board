@@ -169,7 +169,6 @@ html, body {
 .posted_sticky:hover{
     transform: scale(1.2);
     opacity: 2;
-    z-index: 50;
 
 }
 
@@ -182,6 +181,15 @@ div.posted_sticky input.hide_posts_button{
     left: 80%;
 }
 
+
+.sticky_author {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 100px;
+    text-align: center;
+    opacity: 0.8;
+    height: 24px;
+}
 
 
 @keyframes create_new{
@@ -338,7 +346,7 @@ div.posted_sticky input.hide_posts_button{
 
 .sticky_text {
     margin: 10px 10px 10px 10px;
-    min-height: 230px;
+    min-height: 175px;
     min-width: 230px;
     max-height: 220px;
     max-width: 230px;

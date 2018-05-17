@@ -135,7 +135,7 @@ function get_postits() {
                     console.log("this should shut up");
                     console.log(posts_on_page);
                     console.log(posts_on_page.indexOf(post_its[i]));
-                    var result = generate_postit(post_its[i].postItContent, post_its[i]._id);
+                    var result = generate_postit(post_its[i].postItContent, post_its[i]._id, "name");
                     if (!result) {
 
                         broke = true;
@@ -159,7 +159,7 @@ function get_postits() {
 
 var coordinates = []
 
-function generate_postit(postit_text, postit_id) {
+function generate_postit(postit_text, postit_id, postit_name) {
     var text = postit_text;
     var postitsdiv = document.getElementById('postits');
     var postitsparent = document.getElementById('posits_parent');
@@ -187,6 +187,12 @@ function generate_postit(postit_text, postit_id) {
     //hide_button.src = "/img/cross.png";
     //hide_button.style.display = "none";
     //postitsdiv.appendChild(hide_button);
+
+        var name = document.createElement("P");
+        name.appendChild(document.createTextNode("- Jim"));
+        name.className = "sticky_author";
+        sticky.appendChild(name);
+
     var ran_height = 0
     var ran_width = 0
 
@@ -233,6 +239,8 @@ function generate_postit(postit_text, postit_id) {
     coordinates.push([ran_height, ran_width]);
     sticky.style.top = ran_height+'px';
     sticky.style.left = ran_width+'px';
+    //name.style.top = ran_height+200+'px';
+    //name.style.left = ran_width+200+'px';
     postitsdiv.appendChild(sticky);
 
     return true;
