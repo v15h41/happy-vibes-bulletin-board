@@ -172,14 +172,14 @@ html, body {
 
 }
 
-div.posted_sticky:hover input{
+/*div.posted_sticky:hover input{
     display: block;
 }
 
 div.posted_sticky input.hide_posts_button{
     top: 0;
     left: 80%;
-}
+}*/
 
 
 .sticky_author {
@@ -465,14 +465,15 @@ div.posted_sticky input.hide_posts_button{
 
 
 .hide_posts_button{
-    opacity: 0;
     margin-top: 2%;
     float: right;
     margin-right: 2%;
     height: 5%;
     width: 5%;
+    opacity: 0;
 }
 
 .posted_sticky:hover .hide_posts_button{
+    animation: create_new 0.7s ease;
     opacity: 1;
 }
