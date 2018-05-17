@@ -205,6 +205,10 @@ module.exports.delete_event = function(req, res) {
     res.send("1");
 };
 
+module.exports.like_post = function(req, res) {
+
+}
+
 module.exports.submit_post_it = function(req, res) {
     for (key in req.body) {
         if (req.body[key] == "") {
@@ -248,9 +252,35 @@ module.exports.submit_post_it = function(req, res) {
 module.exports.get_events = function(req, res) {
     sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
         if (sessions_found.length) {
+            events_db.aggregate([
+                { "$match": {"workspaceID": mongoose.Types.ObjectId(req.cookies.workspaceID)}},
+                { "$lookup":
+                    {
+                        "from": "users",
+                        "localField": "userID",
+                        "foreignField" : "_id",
+                        "as": "user"
+                    }},
+                { "$project": {
+                    "_id" : 1,
+                    "eventName" : 1,
+                        "location": 1,
+                        "userID" : 1,
+                        "workspaceID" : 1,
+                        "date" : 1,
+                        "user.firstname" : 1,
+                        "user.lastname" : 1
+                }
+                }],function(err, events_found) {
+                    res.send(events_found);
+                }
+
+            );
+
+            /*
             events_db.find({"workspaceID":req.cookies.workspaceID}, function(err, events_found) {
                 res.send(events_found);
-            });
+            });*/
         }
     });
 };
@@ -338,6 +368,14 @@ module.exports.log_in = function(req, res) {
         }
     });
 };
+
+module.exports.get_user_id = function(req, res) {
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+        if (sessions_found.lenth) {
+            res.send(sessions_found[0].userID);
+        }
+    });
+}
 
 module.exports.add_user = function(req, res) {
     var workspace_user = new workspace_users_db({

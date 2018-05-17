@@ -46,6 +46,8 @@ router.get('/get_user_name/:userID', controller.get_user_name);
 
 router.post('/delete_post_it', controller.delete_post_it);
 
-router.post('/change_workspace_cookie', controller.change_workspace_cookie)
+router.post('/change_workspace_cookie', controller.change_workspace_cookie);
+
+router.get('/get_user_id', controller.get_user_id);
 
 module.exports = router;
