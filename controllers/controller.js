@@ -48,6 +48,7 @@ module.exports.admin_page = function(req, res) {
 };
 
 
+
 module.exports.account_page = function(req, res) {
     var is_admin = "false";
     if (req.cookies.sessionID != undefined) {

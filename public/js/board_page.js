@@ -16,6 +16,28 @@ function exit_note_submit() {
     document.getElementById("note_submit_overlay").style.display = "none";
 }
 
+function delete_post_it(post_it_id) {
+    var data_pairs = [];
+    var url_encoded_data = "";
+
+    data_pairs.push(encodeURIComponent("postitID") + '=' + encodeURIComponent(post_it_id));
+
+    url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
+
+    var XHR = new XMLHttpRequest();
+
+    XHR.open('POST', '/delete_post_it');
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send(url_encoded_data);
+
+    var post_it = document.getElementById(post_it_id);
+    remove_post_it(post_it);
+}
+
+function delete_event(event_id) {
+
+}
+
 var event_count = 0;
 function generate_event(event_content, event_id) {
     event_count++;
@@ -107,11 +129,19 @@ function get_events() {
             var events = JSON.parse(XHR.responseText);
             console.log(events);
             for (var i in events) {
-                if (!document.getElementById(events[i]._id))
-                generate_event(events[i], events[i]._id);
+                if (!document.getElementById(events[i]._id)){
+                    generate_event(events[i], events[i]._id);
+                }
             }
         }
     }
+}
+
+function remove_post_it(post_it) {
+    var postitsdiv = document.getElementById('postits');
+    const index = coordinates.indexOf([post_it.style.top, post_it.style.left]);
+    postitsdiv.removeChild(post_it);
+    coordinates.splice(index, 1);
 }
 
 var board_full = false;
@@ -169,15 +199,20 @@ function generate_postit(postit_text, postit_id, postit_name) {
     var postitsparent = document.getElementById('posits_parent');
 
     if (board_full) {
-        postitsdiv.removeChild(postitsdiv.lastChild);
-        const index = coordinates.indexOf([postitsdiv.lastChild.style.top, postitsdiv.lastChild.style.left]);
-        coordinates.splice(index, 1);
+        remove_post_it(postitsdiv.lastChild);
     }
 
     console.log(document.getElementById('postits').offsetHeight);
     console.log(document.getElementById('postits_parent').offsetWidth);
     var sticky = document.createElement("DIV");
     sticky.className = "posted_sticky";
+    // create a hide button for hiding posts, shown when hover
+    hide_button = document.createElement("img");
+    hide_button.className = "hide_posts_button";
+    hide_button.src = "/img/cross.png";
+    hide_button.onclick = function() {delete_post_it(postit_id)};
+    hide_button.style.display = "block";
+    sticky.appendChild(hide_button);
     sticky.id = postit_id;
     var p = document.createElement("P");
     p.appendChild(document.createTextNode(text));
@@ -185,12 +220,6 @@ function generate_postit(postit_text, postit_id, postit_name) {
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
-    // create a hide button for hiding posts, shown when hover
-    //hide_button = document.createElement("img");
-    //hide_button.className = "hide_posts_button";
-    //hide_button.src = "/img/cross.png";
-    //hide_button.style.display = "none";
-    //postitsdiv.appendChild(hide_button);
 
         var name = document.createElement("P");
         if (postit_name.length != 0) {
