@@ -205,6 +205,7 @@ function generate_postit(postit_text, postit_id, postit_name) {
     hide_button = document.createElement("img");
     hide_button.className = "hide_posts_button";
     hide_button.src = "/img/cross.png";
+    hide_button.onclick = function() {delete_post_it(postit_id)};
     hide_button.style.display = "block";
     sticky.appendChild(hide_button);
     sticky.id = postit_id;
