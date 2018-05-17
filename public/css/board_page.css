@@ -462,3 +462,17 @@ div.posted_sticky input.hide_posts_button{
     margin-top: -10px;
     margin-left: 5px;
 }
+
+
+.hide_posts_button{
+    opacity: 0;
+    margin-top: 2%;
+    float: right;
+    margin-right: 2%;
+    height: 5%;
+    width: 5%;
+}
+
+.posted_sticky:hover .hide_posts_button{
+    opacity: 1;
+}
