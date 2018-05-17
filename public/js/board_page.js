@@ -29,9 +29,14 @@ function delete_post_it(post_it_id) {
     XHR.open('POST', '/delete_post_it');
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
+
+    var post_it = document.getElementById(post_it_id);
+    remove_post_it(post_it);
 }
 
+function delete_event(event_id) {
 
+}
 
 var event_count = 0;
 function generate_event(event_content, event_id) {
