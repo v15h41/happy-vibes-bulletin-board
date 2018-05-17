@@ -142,6 +142,11 @@ function remove_post_it(post_it) {
     const index = coordinates.indexOf([post_it.style.top, post_it.style.left]);
     postitsdiv.removeChild(post_it);
     coordinates.splice(index, 1);
+    board_full = false;
+    posts_on_page = [];
+    for (var i in postitsdiv.children) {
+        posts_on_page.push(postitsdiv.children[i].id);
+    }
 }
 
 var board_full = false;
