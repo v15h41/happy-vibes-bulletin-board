@@ -268,6 +268,8 @@ module.exports.get_events = function(req, res) {
                         "userID" : 1,
                         "workspaceID" : 1,
                         "date" : 1,
+                        "startTime" : 1,
+                        "endTime" : 1,
                         "user.firstname" : 1,
                         "user.lastname" : 1
                 }
