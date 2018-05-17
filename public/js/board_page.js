@@ -206,6 +206,12 @@ function generate_postit(postit_text, postit_id, postit_name) {
     console.log(document.getElementById('postits_parent').offsetWidth);
     var sticky = document.createElement("DIV");
     sticky.className = "posted_sticky";
+    // create a hide button for hiding posts, shown when hover
+    hide_button = document.createElement("img");
+    hide_button.className = "hide_posts_button";
+    hide_button.src = "/img/cross.png";
+    hide_button.style.display = "block";
+    sticky.appendChild(hide_button);
     sticky.id = postit_id;
     var p = document.createElement("P");
     p.appendChild(document.createTextNode(text));
@@ -213,12 +219,6 @@ function generate_postit(postit_text, postit_id, postit_name) {
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
-    // create a hide button for hiding posts, shown when hover
-    //hide_button = document.createElement("img");
-    //hide_button.className = "hide_posts_button";
-    //hide_button.src = "/img/cross.png";
-    //hide_button.style.display = "none";
-    //postitsdiv.appendChild(hide_button);
 
         var name = document.createElement("P");
         if (postit_name.length != 0) {
