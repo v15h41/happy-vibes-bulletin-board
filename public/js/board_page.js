@@ -254,7 +254,11 @@ function generate_postit(postit_text, postit_id, postit_name) {
 
         name.className = "sticky_author";
         sticky.appendChild(name);
-
+    like_button = document.createElement("img");
+    like_button.className = "like_button";
+    like_button.src = "/img/like_button.png";
+    like_button.style.display = "block";
+    sticky.appendChild(like_button);
     var ran_height = 0
     var ran_width = 0
 
@@ -271,7 +275,7 @@ function generate_postit(postit_text, postit_id, postit_name) {
             console.log(coordinates[i][0], coordinates[i][1]);
             if ((ran_width+250) >= coordinates[i][1] && (coordinates[i][1]+250) >= ran_width &&
                 (ran_height+250) >= coordinates[i][0] && (coordinates[i][0]+250) >= ran_height) {
-                console.log("test");
+
                 continue_loop = true;
                 break;
             }
