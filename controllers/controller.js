@@ -129,7 +129,8 @@ module.exports.get_post_its = function(req, res) {
                         "userID" : 1,
                         "workspaceID" : 1,
                         "user.firstname" : 1,
-                        "user.lastname" : 1
+                        "user.lastname" : 1,
+                        "likes" : 1
                 }
                 }],function(err, post_its_found) {
                     console.log(post_its_found);
@@ -208,6 +209,7 @@ module.exports.delete_event = function(req, res) {
 module.exports.like_post = function(req, res) {
     post_its_db.findOneAndUpdate({"_id":req.body.postitID}, {$inc : {"likes" : 1}}, function(err, post_it_found) {
         users_db.findOneAndUpdate({"_id":post_it_found[0].userID}, {$inc : {"likes" : 1}}, function(err, found) {
+            console.log("liked");
             res.send("1");
         });
     });
@@ -244,7 +246,9 @@ module.exports.submit_post_it = function(req, res) {
                     "userID":sessions_found[0].userID,
                     "postItContent":content,
                     "anonymous":req.body.anonymous,
-                    "hide": req.body.hide
+                    "hide": req.body.hide,
+                    "likes": 0,
+                    "timestamp":Date.now()
                 });
 
                 post_it.save(function (err, new_post_it) {

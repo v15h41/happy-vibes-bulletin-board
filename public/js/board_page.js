@@ -113,8 +113,16 @@ function generate_event(event_content, event_id) {
     event_count++;
     var content = event_content;
 
-
     var event_card = document.createElement("DIV");
+
+    if (is_admin == true) {
+        hide_button = document.createElement("img");
+        hide_button.className = "delete_event_button";
+        hide_button.src = "/img/cross.png";
+        /*hide_button.onclick = function() {delete_post_it(postit_id)};*/
+        hide_button.style.display = "block";
+        event_card.appendChild(hide_button);
+    }
     event_card.id = event_id;
     var event_name_h1 = document.createElement("H1");
     event_name_h1.className = "event_title";
@@ -242,13 +250,10 @@ function get_postits() {
         if (XHR.readyState == XMLHttpRequest.DONE) {
             var post_its = JSON.parse(XHR.responseText);
             post_its.reverse();
-            console.log(post_its);
+            check_posts(post_its);
             var broke = false;
             for (var i in post_its) {
                 if (posts_on_page.indexOf(post_its[i]._id) == -1) {
-                    console.log("this should shut up");
-                    console.log(posts_on_page);
-                    console.log(posts_on_page.indexOf(post_its[i]));
                     var name = post_its[i].user[0].firstname;
                     var anonymous = post_its[i].anonymous;
                     var result = generate_postit(post_its[i].postItContent, post_its[i]._id, name, anonymous);
@@ -320,7 +325,6 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
-
         var name = document.createElement("P");
         if (anonymous == "no" || is_admin == false) {
             name.appendChild(document.createTextNode("- " + postit_name));
@@ -328,11 +332,20 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
 
         name.className = "sticky_author";
         sticky.appendChild(name);
+
+
     like_button = document.createElement("img");
     like_button.className = "like_button";
     like_button.src = "/img/like_button.png";
     like_button.style.display = "block";
+    like_button.onClick = function() {like_post(postit_id);}
     sticky.appendChild(like_button);
+    var score = document.createElement("P");
+    score.className = "post_score";
+    score.id = postit_id+"_likes";
+    score.appendChild(document.createTextNode("0"));
+    score.style.display = "block";
+    sticky.appendChild(score);
     var ran_height = 0
     var ran_width = 0
 
@@ -386,6 +399,29 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
     return true;
 }
 
+function get_likes() {
+
+}
+
+function check_posts(post_its) {
+    var postitsdiv = document.getElementById('postits');
+    for (var i = postitsdiv.children.length-1; i >= 0; i--) {
+        var found = undefined;
+        for (var j in post_its) {
+            if (post_its[j]._id == postitsdiv.children[i].id) {
+                found = post_its[j];
+                break;
+            }
+        }
+
+        if (found == undefined) {
+            postitsdiv.removeChild(postitsdiv.children[i]);
+        } else {
+            var likes_val = document.getElementById(found._id + "_likes");
+            likes_val.innerText = found.likes;
+        }
+    }
+}
 
 
 
@@ -407,7 +443,6 @@ function create_postit() {
     XHR.open('POST', '/submit_post_it');
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
-    this.generate_postit();
 
 
     exit_note_submit();
