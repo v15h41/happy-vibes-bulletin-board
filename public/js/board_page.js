@@ -1,7 +1,6 @@
 
 
 
-
 function open_new_note_overlay() {
     document.getElementById("note_submit_overlay").style.display = "block";
 }
@@ -189,11 +188,9 @@ function get_postits() {
                     console.log("this should shut up");
                     console.log(posts_on_page);
                     console.log(posts_on_page.indexOf(post_its[i]));
-                    var name = "";
-                    if (post_its[i].anonymous == "no") {
-                        name = post_its[i].user[0].firstname;
-                    }
-                    var result = generate_postit(post_its[i].postItContent, post_its[i]._id, name);
+                    var name = post_its[i].user[0].firstname;
+                    var anonymous = post_its[i].anonymous;
+                    var result = generate_postit(post_its[i].postItContent, post_its[i]._id, name, anonymous);
                     if (!result) {
 
                         broke = true;
@@ -217,7 +214,7 @@ function get_postits() {
 
 var coordinates = []
 
-function generate_postit(postit_text, postit_id, postit_name) {
+function generate_postit(postit_text, postit_id, postit_name, anonymous) {
     var text = postit_text;
     var postitsdiv = document.getElementById('postits');
     var postitsparent = document.getElementById('posits_parent');
@@ -248,7 +245,7 @@ function generate_postit(postit_text, postit_id, postit_name) {
     sticky.appendChild(sticky_text);
 
         var name = document.createElement("P");
-        if (postit_name.length != 0) {
+        if (anonymous == "no" || is_admin == false) {
             name.appendChild(document.createTextNode("- " + postit_name));
         }
 
