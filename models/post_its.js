@@ -5,6 +5,8 @@ var post_its = mongoose.Schema(
         "userID":mongoose.Schema.Types.ObjectId,
         "postItContent":String,
         "anonymous":String,
+        "timestamp":Number, 
+        "likes":Number
     }
 );
 mongoose.model('post_its', post_its);
