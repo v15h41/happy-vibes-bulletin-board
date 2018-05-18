@@ -18,6 +18,66 @@ function exit_note_submit() {
     document.getElementById("note_submit_overlay").style.display = "none";
 }
 
+function exit_join_workspace() {
+    document.getElementById("join_submit_overlay").style.display = "none";
+}
+
+function open_join_workspace_overlay() {
+    document.getElementById("join_workspace_overlay").style.display = "block";
+}
+
+function join_workspace() {
+
+    var workspace_name = document.getElementById("sticky_join_workspace_text").innerText;
+
+    // get workspace id
+    var XHR_get_workspace_id = new XMLHttpRequest();
+    XHR_get_workspace_id.open('GET', '/get_workspace_id/' + workspace_name);
+    XHR_get_workspace_id.send();
+    XHR_get_workspace_id.onreadystatechange = function () {
+        if (XHR_get_workspace_id.readyState == XMLHttpRequest.DONE){
+            var data_pairs = [];
+            var url_encoded_data = "";
+            var default_role = "user_join_workspace_test";
+
+            // get workspaceID
+            var workspaceID = XHR_get_workspace_id.responseText.substring(1);
+            console.log("workspaceID: " + workspaceID);
+
+
+            // get user id
+            var XHR_get_user_id  = new XMLHttpRequest();
+            XHR_get_user_id.open('GET', '/get_user_id');
+            XHR_get_user_id.send();
+            XHR_get_user_id.onreadystatechange = function(){
+                console.log("calling XHR_get_user_id");
+                if (XHR_get_user_id.readyState == XMLHttpRequest.DONE){
+                    var userID = XHR_get_user_id.responseText;
+                    console.log("userID: " + userID);
+                    data_pairs.push(encodeURIComponent("workspaceID") + '=' + encodeURIComponent(workspaceID));
+                    data_pairs.push(encodeURIComponent("userID") + '=' + encodeURIComponent(userID));
+
+                    data_pairs.push(encodeURIComponent("user role") + '=' + encodeURIComponent(default_role));
+                    url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
+
+                    // add user into workspace
+                    var XHR_add_user = new XMLHttpRequest();
+                    XHR_add_user.open('POST', '/add_user');
+                    XHR_add_user.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    XHR_add_user.send(url_encoded_data);
+                }
+            }
+
+
+        }
+    }
+
+
+
+}
+
+
+
 function delete_post_it(post_it_id) {
     var data_pairs = [];
     var url_encoded_data = "";
@@ -212,6 +272,22 @@ function get_postits() {
     }
 }
 
+function like_post(post_id) {
+    var data_pairs = [];
+    var url_encoded_data = "";
+
+    data_pairs.push(encodeURIComponent("postitID") + '=' +
+                        encodeURIComponent(post_id));
+
+    url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
+
+    var XHR = new XMLHttpRequest();
+
+    XHR.open('POST', '/like_post');
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send(url_encoded_data);
+}
+
 var coordinates = []
 
 function generate_postit(postit_text, postit_id, postit_name, anonymous) {
@@ -337,6 +413,7 @@ function create_postit() {
     XHR.open('POST', '/submit_post_it');
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
+    this.generate_postit();
 
 
     exit_note_submit();
