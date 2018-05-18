@@ -1,14 +1,4 @@
-var is_admin;
 
-function isAdmin(admin) {
-    console.log(admin);
-    if (admin == "true"){
-        var is_admin = true;
-    }
-    else{
-        var is_admin = false;
-    }
-}
 
 
 
@@ -43,8 +33,15 @@ function delete_post_it(post_it_id) {
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
 
-    var post_it = document.getElementById(post_it_id);
-    remove_post_it(post_it);
+    XHR.onreadystatechange = function() {
+        if (XHR.readyState == XMLHttpRequest.DONE) {
+            console.log("deleted");
+            var post_it = document.getElementById(post_it_id);
+            remove_post_it(post_it);
+        }
+        
+    }
+    
 }
 
 function delete_event(event_id) {
@@ -151,10 +148,24 @@ function get_events() {
 }
 
 function remove_post_it(post_it) {
+    console.log(coordinates)
     var postitsdiv = document.getElementById('postits');
-    const index = coordinates.indexOf([post_it.style.top, post_it.style.left]);
+    var index = -1;
+    for (var i in coordinates) {
+        if (coordinates[i][0] == parseInt(post_it.style.top, 10) && coordinates[i][1] == parseInt(post_it.style.left, 10)) {
+            index = i;
+        }
+    }
+
     postitsdiv.removeChild(post_it);
     coordinates.splice(index, 1);
+    console.log(index)
+    console.log("c" + [parseInt(post_it.style.top, 10), parseInt(post_it.style.left, 10)])
+    board_full = false;
+    posts_on_page = [];
+    for (var i in postitsdiv.children) {
+        posts_on_page.push(postitsdiv.children[i].id);
+    }
 }
 
 var board_full = false;

@@ -197,10 +197,12 @@ module.exports.get_user_name = function(req, res) {
 
 module.exports.delete_post_it = function(req, res) {
     post_its_db.remove({"_id":req.body.postitID}, function(err, obj) {});
+    res.send("1");
 };
 
 module.exports.delete_event = function(req, res) {
     events_db.remove({"_id":req.body.eventID}, function(err, obj) {});
+    res.send("1");
 };
 
 module.exports.submit_post_it = function(req, res) {
