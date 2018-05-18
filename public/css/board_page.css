@@ -573,8 +573,16 @@ html, body {
 }
 
 .post_score{
-    margin-top: 0px;
-    margin-left: 1%;
+    float: right;
+    margin-top: -0.8%;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    opacity: 0;
+ }
+
+.post_score:hover {
+    float: right;
+    opacity: 1;
 }
 
 
@@ -597,6 +605,10 @@ html, body {
 }
 
 
+.posted_sticky:hover .post_score{
+    animation: appear_button 0.5s ease;
+    opacity: 1;
+}
 
 .posted_sticky:hover .like_button{
     animation: appear_button 0.5s ease;
