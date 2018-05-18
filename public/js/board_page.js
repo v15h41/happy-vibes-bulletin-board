@@ -1,4 +1,7 @@
 
+
+
+
 function open_new_note_overlay() {
     document.getElementById("note_submit_overlay").style.display = "block";
 }
@@ -47,8 +50,15 @@ function delete_post_it(post_it_id) {
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
 
-    var post_it = document.getElementById(post_it_id);
-    remove_post_it(post_it);
+    XHR.onreadystatechange = function() {
+        if (XHR.readyState == XMLHttpRequest.DONE) {
+            console.log("deleted");
+            var post_it = document.getElementById(post_it_id);
+            remove_post_it(post_it);
+        }
+        
+    }
+    
 }
 
 function delete_event(event_id) {
@@ -155,10 +165,24 @@ function get_events() {
 }
 
 function remove_post_it(post_it) {
+    console.log(coordinates)
     var postitsdiv = document.getElementById('postits');
-    const index = coordinates.indexOf([post_it.style.top, post_it.style.left]);
+    var index = -1;
+    for (var i in coordinates) {
+        if (coordinates[i][0] == parseInt(post_it.style.top, 10) && coordinates[i][1] == parseInt(post_it.style.left, 10)) {
+            index = i;
+        }
+    }
+
     postitsdiv.removeChild(post_it);
     coordinates.splice(index, 1);
+    console.log(index)
+    console.log("c" + [parseInt(post_it.style.top, 10), parseInt(post_it.style.left, 10)])
+    board_full = false;
+    posts_on_page = [];
+    for (var i in postitsdiv.children) {
+        posts_on_page.push(postitsdiv.children[i].id);
+    }
 }
 
 var board_full = false;
@@ -224,12 +248,14 @@ function generate_postit(postit_text, postit_id, postit_name) {
     var sticky = document.createElement("DIV");
     sticky.className = "posted_sticky";
     // create a hide button for hiding posts, shown when hover
-    hide_button = document.createElement("img");
-    hide_button.className = "hide_posts_button";
-    hide_button.src = "/img/cross.png";
-    hide_button.onclick = function() {delete_post_it(postit_id)};
-    hide_button.style.display = "block";
-    sticky.appendChild(hide_button);
+    if (is_admin == true) {
+        hide_button = document.createElement("img");
+        hide_button.className = "hide_posts_button";
+        hide_button.src = "/img/cross.png";
+        hide_button.onclick = function() {delete_post_it(postit_id)};
+        hide_button.style.display = "block";
+        sticky.appendChild(hide_button);
+    }
     sticky.id = postit_id;
     var p = document.createElement("P");
     p.appendChild(document.createTextNode(text));
