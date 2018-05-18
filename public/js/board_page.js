@@ -243,7 +243,6 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
-
         var name = document.createElement("P");
         if (anonymous == "no" || is_admin == false) {
             name.appendChild(document.createTextNode("- " + postit_name));
@@ -251,11 +250,19 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
 
         name.className = "sticky_author";
         sticky.appendChild(name);
+
+
     like_button = document.createElement("img");
     like_button.className = "like_button";
     like_button.src = "/img/like_button.png";
     like_button.style.display = "block";
     sticky.appendChild(like_button);
+    var score = document.createElement("P");
+    score.className = "post_score";
+    score.id = postit_id+"_likes";
+    score.appendChild(document.createTextNode("0"));
+    score.style.display = "block";
+    sticky.appendChild(score);
     var ran_height = 0
     var ran_width = 0
 

@@ -153,7 +153,7 @@ html, body {
 .posted_sticky {
     background-color: whitesmoke;
     position: absolute;
-    animation: create_new 0.7s ease;
+    /*animation: create_new 0.7s ease;*/
     font-family: "Oswald";
     min-height: 250px;
     min-width: 250px;
@@ -164,22 +164,33 @@ html, body {
 
     width: 250px;
     height: 250px;
+    animation: decreaseSize 0.5s ease;
 }
 
 .posted_sticky:hover{
-    transform: scale(1.2);
+    animation: increaseSize 0.5s ease;
     opacity: 2;
+    transform: scale(1.2)
 
 }
 
-/*div.posted_sticky:hover input{
-    display: block;
+@keyframes increaseSize{
+    from {
+        transform: scale(1)
+    }
+    to{
+        transform: scale(1.2)
+    }
 }
 
-div.posted_sticky input.hide_posts_button{
-    top: 0;
-    left: 80%;
-}*/
+@keyframes decreaseSize{
+    from{
+        transform: scale(1.2)
+    }
+    to{
+        transform: scale(1)
+    }
+}
 
 
 .sticky_author {
@@ -399,7 +410,7 @@ div.posted_sticky input.hide_posts_button{
 
 .event_card {
     width: 380px;
-    height: 150px;
+    height: 180px;
     margin: 10px 10px 10px 10px;
     border-radius: 10px;
     background-color: ghostwhite;
@@ -473,6 +484,11 @@ div.posted_sticky input.hide_posts_button{
     opacity: 0;
 }
 
+.post_score{
+    margin-top: 0px;
+    margin-left: 1%;
+}
+
 
 .like_button{
     margin-bottom: 5%;
@@ -483,13 +499,44 @@ div.posted_sticky input.hide_posts_button{
     opacity: 0;
 }
 
+.like_button:hover {
+    margin-bottom: 5%;
+    float: right;
+    margin-right: 2%;
+    height: 8%;
+    width: 8%;
+    opacity: 1;
+}
+
+
 
 .posted_sticky:hover .like_button{
-    animation: create_new 0.1s ease;
-    opacity: 1;
+    animation: appear_button 0.5s ease;
+    opacity: 0.7;
 }
 
 .posted_sticky:hover .hide_posts_button{
-    animation: create_new 0.1s ease;
-    opacity: 1;
+    animation: appear_button 0.5s ease;
+    opacity: 0.7;
 }
+
+
+
+@keyframes appear_button{
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 0.7;
+    }
+}
+
+@keyframes disappear_button {
+    from {
+        opacity: 0.7;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
