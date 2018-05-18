@@ -28,10 +28,13 @@ function open_join_workspace_overlay() {
 }
 
 function join_workspace() {
-    var XHR = new XMLHttpRequest();
-    XHR.open('POST', '/add_user');
+    var data_pairs = [];
+    var XHR_get_workspace_id = new XMLHttpRequest();
+    XHR_get_workspace_id.open()
+    var XHR_add_user = new XMLHttpRequest();
+    XHR_add_user.open('POST', '/add_user');
     var workspace_name = document.getElementById("sticky_join_workspace_text").innerText;
-    XHR.send(workspace_name)
+    XHR_add_user.send(workspace_name)
 }
 
 
