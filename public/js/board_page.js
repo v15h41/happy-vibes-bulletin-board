@@ -65,6 +65,7 @@ function join_workspace() {
                     XHR_add_user.open('POST', '/add_user');
                     XHR_add_user.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     XHR_add_user.send(url_encoded_data);
+
                 }
             }
 
