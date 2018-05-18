@@ -243,13 +243,9 @@ function get_postits() {
             var post_its = JSON.parse(XHR.responseText);
             post_its.reverse();
             check_posts(post_its);
-            console.log(post_its);
             var broke = false;
             for (var i in post_its) {
                 if (posts_on_page.indexOf(post_its[i]._id) == -1) {
-                    console.log("this should shut up");
-                    console.log(posts_on_page);
-                    console.log(posts_on_page.indexOf(post_its[i]));
                     var name = post_its[i].user[0].firstname;
                     var anonymous = post_its[i].anonymous;
                     var result = generate_postit(post_its[i].postItContent, post_its[i]._id, name, anonymous);
@@ -333,6 +329,7 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
     like_button.className = "like_button";
     like_button.src = "/img/like_button.png";
     like_button.style.display = "block";
+    like_button.onClick = function() {like_post(postit_id);}
     sticky.appendChild(like_button);
     var ran_height = 0
     var ran_width = 0
@@ -403,10 +400,13 @@ function check_posts(post_its) {
         }
 
         if (found == undefined) {
+            console.log("deleted post");
+            console.log(postitsdiv.children[i]);
+            console.log(post_its);
             postitsdiv.removeChild(postitsdiv.children[i]);
         } else {
-            var likes_val = document.getElementById(found._id + "_likes");
-            likes_val.value = found.likes;
+            //var likes_val = document.getElementById(found._id + "_likes");
+            //likes_val.innerText = found.likes;
         }
     }
 }
@@ -431,7 +431,6 @@ function create_postit() {
     XHR.open('POST', '/submit_post_it');
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
-    this.generate_postit();
 
 
     exit_note_submit();
