@@ -133,7 +133,6 @@ module.exports.get_post_its = function(req, res) {
                         "likes" : 1
                 }
                 }],function(err, post_its_found) {
-                    console.log(post_its_found);
                     res.send(post_its_found);
                 }
 
@@ -182,14 +181,12 @@ module.exports.get_workspaces = function(req, res) {
 };
 
 module.exports.change_workspace_cookie = function(req, res) {
-    console.log(req.body);
     res.clearCookie("workspaceID");
     res.cookie('workspaceID', req.body.workspaceID);
     res.send();
 };
 
 module.exports.get_user_name = function(req, res) {
-    console.log(req.params);
     users_db.find({"_id":req.params.userID}, function(err, user_found) {
         res.send(user_found[0].firstname + ' ' + user_found[0].lastname);
     });
@@ -208,8 +205,8 @@ module.exports.delete_event = function(req, res) {
 
 module.exports.like_post = function(req, res) {
     post_its_db.findOneAndUpdate({"_id":req.body.postitID}, {$inc : {"likes" : 1}}, function(err, post_it_found) {
-        users_db.findOneAndUpdate({"_id":post_it_found[0].userID}, {$inc : {"likes" : 1}}, function(err, found) {
-            console.log("liked");
+        console.log(post_it_found);
+        users_db.findOneAndUpdate({"_id":post_it_found.userID}, {$inc : {"likes" : 1}}, function(err, found) {
             res.send("1");
         });
     });
@@ -235,10 +232,7 @@ module.exports.submit_post_it = function(req, res) {
         if (sessions_found.length) {
             var content = req.body.post_it_content;
 
-            console.log(content);
-
             if (content.includes("fuck")) {
-                console.log("profane");
                 content = "Hope you're all having a lovely day!";
             }
                 var post_it = post_its_db({
@@ -373,7 +367,6 @@ module.exports.log_in = function(req, res) {
                 var session = new sessions_db({"userID":user_found[0]._id});
                 session.save(function (err, new_session) {
                     workspace_users_db.find({"userID":user_found[0]._id}, function(err, workspaceID_found) {
-                        console.log(workspaceID_found);
                         res.cookie('workspaceID', workspaceID_found[0].workspaceID);
                         res.cookie('sessionID', new_session._id).send("1" + user_found[0]._id);
                     });
