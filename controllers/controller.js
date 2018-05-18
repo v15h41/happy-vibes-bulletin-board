@@ -129,7 +129,8 @@ module.exports.get_post_its = function(req, res) {
                         "userID" : 1,
                         "workspaceID" : 1,
                         "user.firstname" : 1,
-                        "user.lastname" : 1
+                        "user.lastname" : 1,
+                        "likes" : 1
                 }
                 }],function(err, post_its_found) {
                     console.log(post_its_found);
@@ -244,7 +245,9 @@ module.exports.submit_post_it = function(req, res) {
                     "userID":sessions_found[0].userID,
                     "postItContent":content,
                     "anonymous":req.body.anonymous,
-                    "hide": req.body.hide
+                    "hide": req.body.hide,
+                    "likes": 0,
+                    "timestamp":Date.now()
                 });
 
                 post_it.save(function (err, new_post_it) {

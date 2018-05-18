@@ -415,13 +415,10 @@ function check_posts(post_its) {
         }
 
         if (found == undefined) {
-            console.log("deleted post");
-            console.log(postitsdiv.children[i]);
-            console.log(post_its);
             postitsdiv.removeChild(postitsdiv.children[i]);
         } else {
-            //var likes_val = document.getElementById(found._id + "_likes");
-            //likes_val.innerText = found.likes;
+            var likes_val = document.getElementById(found._id + "_likes");
+            likes_val.innerText = found.likes;
         }
     }
 }
