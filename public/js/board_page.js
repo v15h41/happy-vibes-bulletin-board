@@ -16,6 +16,23 @@ function exit_note_submit() {
     document.getElementById("note_submit_overlay").style.display = "none";
 }
 
+function exit_join_workspace() {
+    document.getElementById("join_submit_overlay").style.display = "none";
+}
+
+function open_join_workspace_overlay() {
+    document.getElementById("join_workspace_overlay").style.display = "block";
+}
+
+function join_workspace() {
+    var XHR = new XMLHttpRequest();
+    XHR.open('POST', '/add_user');
+    var workspace_name = document.getElementById("sticky_join_workspace_text").innerText;
+    XHR.send(workspace_name)
+}
+
+
+
 function delete_post_it(post_it_id) {
     var data_pairs = [];
     var url_encoded_data = "";
