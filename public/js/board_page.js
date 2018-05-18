@@ -338,7 +338,7 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
     like_button.className = "like_button";
     like_button.src = "/img/like_button.png";
     like_button.style.display = "block";
-    like_button.onClick = function() {like_post(postit_id);}
+    like_button.onclick = function() {like_post(postit_id);}
     sticky.appendChild(like_button);
     var score = document.createElement("P");
     score.className = "post_score";
