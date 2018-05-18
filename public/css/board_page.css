@@ -345,11 +345,11 @@ div.posted_sticky input.hide_posts_button{
 }
 
 .sticky_text {
-    margin: 10px 10px 10px 10px;
+    margin-top: 10px;
+    margin-left: 10px;
     min-height: 175px;
-    min-width: 230px;
+    width: 92%;
     max-height: 220px;
-    max-width: 230px;
     display: inline-block;
     text-align: center;
     font-size: 25px;
@@ -473,7 +473,23 @@ div.posted_sticky input.hide_posts_button{
     opacity: 0;
 }
 
+
+.like_button{
+    margin-bottom: 5%;
+    float: right;
+    margin-right: 2%;
+    height: 8%;
+    width: 8%;
+    opacity: 0;
+}
+
+
+.posted_sticky:hover .like_button{
+    animation: create_new 0.1s ease;
+    opacity: 1;
+}
+
 .posted_sticky:hover .hide_posts_button{
-    animation: create_new 0.7s ease;
+    animation: create_new 0.1s ease;
     opacity: 1;
 }

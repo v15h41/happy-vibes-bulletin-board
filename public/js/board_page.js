@@ -272,6 +272,22 @@ function get_postits() {
     }
 }
 
+function like_post(post_id) {
+    var data_pairs = [];
+    var url_encoded_data = "";
+
+    data_pairs.push(encodeURIComponent("postitID") + '=' +
+                        encodeURIComponent(post_id));
+
+    url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
+
+    var XHR = new XMLHttpRequest();
+
+    XHR.open('POST', '/like_post');
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send(url_encoded_data);
+}
+
 var coordinates = []
 
 function generate_postit(postit_text, postit_id, postit_name, anonymous) {
@@ -311,7 +327,11 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
 
         name.className = "sticky_author";
         sticky.appendChild(name);
-
+    like_button = document.createElement("img");
+    like_button.className = "like_button";
+    like_button.src = "/img/like_button.png";
+    like_button.style.display = "block";
+    sticky.appendChild(like_button);
     var ran_height = 0
     var ran_width = 0
 
@@ -328,7 +348,7 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
             console.log(coordinates[i][0], coordinates[i][1]);
             if ((ran_width+250) >= coordinates[i][1] && (coordinates[i][1]+250) >= ran_width &&
                 (ran_height+250) >= coordinates[i][0] && (coordinates[i][0]+250) >= ran_height) {
-                console.log("test");
+
                 continue_loop = true;
                 break;
             }
