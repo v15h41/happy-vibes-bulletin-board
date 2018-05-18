@@ -181,6 +181,7 @@ function get_postits() {
         if (XHR.readyState == XMLHttpRequest.DONE) {
             var post_its = JSON.parse(XHR.responseText);
             post_its.reverse();
+            check_posts(post_its);
             console.log(post_its);
             var broke = false;
             for (var i in post_its) {
@@ -325,6 +326,29 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
     return true;
 }
 
+function get_likes() {
+
+}
+
+function check_posts(post_its) {
+    var postitsdiv = document.getElementById('postits');
+    for (var i = postitsdiv.children.length-1; i >= 0; i--) {
+        var found = undefined;
+        for (var j in post_its) {
+            if (post_its[j]._id == postitsdiv.children[i].id) {
+                found = post_its[j];
+                break;
+            }
+        }
+
+        if (found == undefined) {
+            postitsdiv.removeChild(postitsdiv.children[i]);
+        } else {
+            var likes_val = document.getElementById(found._id + "_likes");
+            likes_val.value = found.likes;
+        }
+    }
+}
 
 
 
