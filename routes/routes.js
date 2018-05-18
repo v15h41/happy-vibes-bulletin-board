@@ -50,6 +50,8 @@ router.post('/change_workspace_cookie', controller.change_workspace_cookie);
 
 router.post('/like_post', controller.like_post);
 
+router.get('/get_likes', controller.get_likes);
+
 router.get('/get_user_id', controller.get_user_id);
 
 module.exports = router;

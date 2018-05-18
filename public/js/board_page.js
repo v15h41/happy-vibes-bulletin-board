@@ -401,7 +401,18 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
 }
 
 function get_likes() {
+    var XHR = new XMLHttpRequest();
 
+    XHR.open('GET', '/get_likes');
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send();
+
+    XHR.onreadystatechange = function() {
+        if (XHR.readyState == XMLHttpRequest.DONE) {
+            var user_likes_val = document.getElementById("user_likes");
+            user_likes_val.innerText = XHR.responseText + " 👍"
+        }
+    }
 }
 
 function check_posts(post_its) {
@@ -471,6 +482,7 @@ get_events();
 get_postits();
 
 window.setInterval(function(){
+    get_likes();
     get_events();
     get_postits();
 }, 1000);
