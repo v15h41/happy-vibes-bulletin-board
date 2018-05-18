@@ -112,8 +112,16 @@ function generate_event(event_content, event_id) {
     event_count++;
     var content = event_content;
 
-
     var event_card = document.createElement("DIV");
+
+    if (is_admin == true) {
+        hide_button = document.createElement("img");
+        hide_button.className = "delete_event_button";
+        hide_button.src = "/img/cross.png";
+        /*hide_button.onclick = function() {delete_post_it(postit_id)};*/
+        hide_button.style.display = "block";
+        event_card.appendChild(hide_button);
+    }
     event_card.id = event_id;
     var event_name_h1 = document.createElement("H1");
     event_name_h1.className = "event_title";
