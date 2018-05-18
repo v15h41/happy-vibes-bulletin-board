@@ -27,13 +27,53 @@ function open_join_workspace_overlay() {
 }
 
 function join_workspace() {
-    var data_pairs = [];
-    var XHR_get_workspace_id = new XMLHttpRequest();
-    XHR_get_workspace_id.open()
-    var XHR_add_user = new XMLHttpRequest();
-    XHR_add_user.open('POST', '/add_user');
+
     var workspace_name = document.getElementById("sticky_join_workspace_text").innerText;
-    XHR_add_user.send(workspace_name)
+
+    // get workspace id
+    var XHR_get_workspace_id = new XMLHttpRequest();
+    XHR_get_workspace_id.open('GET', '/get_workspace_id/' + workspace_name);
+    XHR_get_workspace_id.send();
+    XHR_get_workspace_id.onreadystatechange = function () {
+        if (XHR_get_workspace_id.readyState == XMLHttpRequest.DONE){
+            var data_pairs = [];
+            var url_encoded_data = "";
+            var default_role = "user_join_workspace_test";
+
+            // get workspaceID
+            var workspaceID = XHR_get_workspace_id.responseText.substring(1);
+            console.log("workspaceID: " + workspaceID);
+
+
+            // get user id
+            var XHR_get_user_id  = new XMLHttpRequest();
+            XHR_get_user_id.open('GET', '/get_user_id');
+            XHR_get_user_id.send();
+            XHR_get_user_id.onreadystatechange = function(){
+                console.log("calling XHR_get_user_id");
+                if (XHR_get_user_id.readyState == XMLHttpRequest.DONE){
+                    var userID = XHR_get_user_id.responseText;
+                    console.log("userID: " + userID);
+                    data_pairs.push(encodeURIComponent("workspaceID") + '=' + encodeURIComponent(workspaceID));
+                    data_pairs.push(encodeURIComponent("userID") + '=' + encodeURIComponent(userID));
+
+                    data_pairs.push(encodeURIComponent("user role") + '=' + encodeURIComponent(default_role));
+                    url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
+
+                    // add user into workspace
+                    var XHR_add_user = new XMLHttpRequest();
+                    XHR_add_user.open('POST', '/add_user');
+                    XHR_add_user.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    XHR_add_user.send(url_encoded_data);
+                }
+            }
+
+
+        }
+    }
+
+
+
 }
 
 
