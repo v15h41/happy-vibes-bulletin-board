@@ -113,8 +113,16 @@ function generate_event(event_content, event_id) {
     event_count++;
     var content = event_content;
 
-
     var event_card = document.createElement("DIV");
+
+    if (is_admin == true) {
+        hide_button = document.createElement("img");
+        hide_button.className = "delete_event_button";
+        hide_button.src = "/img/cross.png";
+        /*hide_button.onclick = function() {delete_post_it(postit_id)};*/
+        hide_button.style.display = "block";
+        event_card.appendChild(hide_button);
+    }
     event_card.id = event_id;
     var event_name_h1 = document.createElement("H1");
     event_name_h1.className = "event_title";
@@ -317,7 +325,6 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
-
         var name = document.createElement("P");
         if (anonymous == "no" || is_admin == false) {
             name.appendChild(document.createTextNode("- " + postit_name));
@@ -325,12 +332,20 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
 
         name.className = "sticky_author";
         sticky.appendChild(name);
+
+
     like_button = document.createElement("img");
     like_button.className = "like_button";
     like_button.src = "/img/like_button.png";
     like_button.style.display = "block";
     like_button.onClick = function() {like_post(postit_id);}
     sticky.appendChild(like_button);
+    var score = document.createElement("P");
+    score.className = "post_score";
+    score.id = postit_id+"_likes";
+    score.appendChild(document.createTextNode("0"));
+    score.style.display = "block";
+    sticky.appendChild(score);
     var ran_height = 0
     var ran_width = 0
 
