@@ -209,6 +209,7 @@ module.exports.delete_event = function(req, res) {
 module.exports.like_post = function(req, res) {
     post_its_db.findOneAndUpdate({"_id":req.body.postitID}, {$inc : {"likes" : 1}}, function(err, post_it_found) {
         users_db.findOneAndUpdate({"_id":post_it_found[0].userID}, {$inc : {"likes" : 1}}, function(err, found) {
+            console.log("liked");
             res.send("1");
         });
     });
