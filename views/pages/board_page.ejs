@@ -54,9 +54,15 @@
 <div id="note_submit_overlay" class="overlay">
     <div id="newnote">
         <div class="sticky" id="typesticky">
-            <div id="sticky_submit_text" class="sticky_text" class="editable" contenteditable="true">
+            <div id="sticky_submit_text" class="sticky_text" class="editable" contenteditable="true"></div>
+            <!-- checkbox for checking whether is anonymous or not -->
+            <div>
+                <label class="container">Anonymous
+                    <input type="checkbox" id="is_anonymous" >
+                    <span class="checkmark"></span>
+                </label>
             </div>
-            <!-- Anonymous <input type="checkbox"> <br> -->
+
             <button type="button" id="post_button" onclick="create_postit()">Post It!</button>
 
         </div>

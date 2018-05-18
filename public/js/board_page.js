@@ -444,9 +444,12 @@ function check_posts(post_its) {
 function create_postit() {
     var data_pairs = [];
     var url_encoded_data = "";
-
+    var is_anonymous = "no";
+    if(document.getElementById("is_anonymous").checked){
+        is_anonymous = "yes";
+    }
     data_pairs.push(encodeURIComponent("post_it_content") + '=' + encodeURIComponent(document.getElementById("sticky_submit_text").innerText));
-    data_pairs.push(encodeURIComponent("anonymous") + '=' + encodeURIComponent("no"));
+    data_pairs.push(encodeURIComponent("anonymous") + '=' + encodeURIComponent(is_anonymous));
     data_pairs.push(encodeURIComponent("hide") + '=' + encodeURIComponent("false"));
 
     url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
