@@ -500,13 +500,15 @@ html, body {
 
 .delete_event_button{
     float: right;
-    margin-left: 380px;
     margin-bottom: 10px;
     height: 11%;
     width: 5.2%;
     opacity: 1;
 }
 
+.event_user_posted{
+    float: right;
+}
 
 .event_card:hover {
     Opacity: 1;
