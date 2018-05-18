@@ -190,25 +190,29 @@ html, body {
 .posted_sticky:hover{
     animation: increaseSize 0.5s ease;
     opacity: 2;
-    transform: scale(1.2)
-
+    transform: scale(1.2);
+    z-index: 10;
 }
 
 @keyframes increaseSize{
     from {
-        transform: scale(1)
+        transform: scale(1);
+        z-index: 1;
     }
     to{
-        transform: scale(1.2)
+        transform: scale(1.2);
+        z-index: 10;
     }
 }
 
 @keyframes decreaseSize{
     from{
-        transform: scale(1.2)
+        transform: scale(1.2);
+        z-index: 10;
     }
     to{
-        transform: scale(1)
+        transform: scale(1);
+        z-index: 1;
     }
 }
 
