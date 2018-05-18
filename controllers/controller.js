@@ -206,8 +206,20 @@ module.exports.delete_event = function(req, res) {
 };
 
 module.exports.like_post = function(req, res) {
+    post_its_db.findOneAndUpdate({"_id":req.body.postitID}, {$inc : {"likes" : 1}}, function(err, post_it_found) {
+        users_db.findOneAndUpdate({"_id":post_it_found[0].userID}, {$inc : {"likes" : 1}}, function(err, found) {
+            res.send("1");
+        });
+    });
+};
 
-}
+module.exports.get_likes = function(req, res) {
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+        users_db.find({"_id":sessions_found[0].userID}, function(err, user_found) {
+            res.send(user_found[0].likes);
+        });
+    });
+};
 
 module.exports.submit_post_it = function(req, res) {
     for (key in req.body) {

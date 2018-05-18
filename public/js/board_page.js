@@ -212,6 +212,22 @@ function get_postits() {
     }
 }
 
+function like_post(post_id) {
+    var data_pairs = [];
+    var url_encoded_data = "";
+
+    data_pairs.push(encodeURIComponent("postitID") + '=' +
+                        encodeURIComponent(post_id));
+
+    url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
+
+    var XHR = new XMLHttpRequest();
+
+    XHR.open('POST', '/like_post');
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send(url_encoded_data);
+}
+
 var coordinates = []
 
 function generate_postit(postit_text, postit_id, postit_name, anonymous) {
