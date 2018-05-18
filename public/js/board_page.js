@@ -38,7 +38,7 @@ function join_workspace() {
         if (XHR_get_workspace_id.readyState == XMLHttpRequest.DONE){
             var data_pairs = [];
             var url_encoded_data = "";
-            var default_role = "user_join_workspace_test";
+            var default_role = "user";
 
             // get workspaceID
             var workspaceID = XHR_get_workspace_id.responseText.substring(1);
@@ -109,7 +109,7 @@ function delete_event(event_id) {
 }
 
 var event_count = 0;
-function generate_event(event_content, event_id) {
+function generate_event(event_content, event_id, poster_name) {
     event_count++;
     var content = event_content;
 
@@ -122,6 +122,11 @@ function generate_event(event_content, event_id) {
         /*hide_button.onclick = function() {delete_post_it(postit_id)};*/
         hide_button.style.display = "block";
         event_card.appendChild(hide_button);
+        
+        user_posted = document.createElement("P");
+        user_posted.className = "event_user_posted";
+        user_posted.appendChild(document.createTextNode("Posted by: " + poster_name));
+        event_card.appendChild(user_posted);
     }
     event_card.id = event_id;
     var event_name_h1 = document.createElement("H1");
@@ -208,7 +213,7 @@ function get_events() {
             console.log(events);
             for (var i in events) {
                 if (!document.getElementById(events[i]._id)){
-                    generate_event(events[i], events[i]._id);
+                    generate_event(events[i], events[i]._id, events[i].user[0].firstname);
                 }
             }
         }
