@@ -385,7 +385,7 @@ module.exports.log_in = function(req, res) {
 
 module.exports.get_user_id = function(req, res) {
     sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
-        if (sessions_found.lenth) {
+        if (sessions_found.length) {
             res.send(sessions_found[0].userID);
         }
     });
