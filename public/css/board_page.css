@@ -497,17 +497,18 @@ html, body {
     -o-transition: all 0.5s ease;
 }
 
-
 .delete_event_button{
     float: right;
-    margin-bottom: 10px;
-    height: 11%;
-    width: 5.2%;
-    opacity: 1;
+    margin-top: 1%;
+    margin-right: 5px;
+    height: 6.875%;
+    width: 3.25%;
+    opacity: 0;
 }
 
-.event_user_posted{
-    float: right;
+.event_card:hover .delete_event_button{
+    animation: appear_button 0.2s ease;
+    opacity: 1;
 }
 
 .event_card:hover {
