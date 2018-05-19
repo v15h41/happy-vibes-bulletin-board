@@ -91,7 +91,8 @@ module.exports.submit_user = function(req, res) {
                 "firstname":req.body.firstname,
                 "lastname":req.body.lastname,
                 "email":req.body.email,
-                "password":req.body.password
+                "password":req.body.password, 
+                "likes": 0
             });
 
             user.save(function (err, new_user) {
@@ -109,7 +110,6 @@ module.exports.submit_user = function(req, res) {
 };
 
 module.exports.get_post_its = function(req, res) {
-
 
     sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found)   {
         if (sessions_found.length) {

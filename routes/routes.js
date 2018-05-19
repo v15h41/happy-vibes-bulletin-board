@@ -54,4 +54,6 @@ router.get('/get_likes', controller.get_likes);
 
 router.get('/get_user_id', controller.get_user_id);
 
+router.post('/delete_event', controller.delete_event);
+
 module.exports = router;

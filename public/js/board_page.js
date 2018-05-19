@@ -97,6 +97,22 @@ function delete_post_it(post_it_id) {
 }
 
 function delete_event(event_id) {
+    var data_pairs = [];
+    var url_encoded_data = "";
+
+    data_pairs.push(encodeURIComponent("eventID") + '=' + encodeURIComponent(event_id));
+
+    url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
+
+    var XHR = new XMLHttpRequest();
+
+    XHR.open('POST', '/delete_event');
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send(url_encoded_data);
+
+    var events_div = document.getElementById("events");
+    var event = document.getElementById(event_id);
+    events_div.removeChild(event);
 
 }
 
@@ -111,7 +127,7 @@ function generate_event(event_content, event_id, poster_name) {
         hide_button = document.createElement("img");
         hide_button.className = "delete_event_button";
         hide_button.src = "/img/cross.png";
-        /*hide_button.onclick = function() {delete_post_it(postit_id)};*/
+        hide_button.onclick = function() {delete_event(event_id)};
         hide_button.style.display = "block";
         event_card.appendChild(hide_button);
     }
