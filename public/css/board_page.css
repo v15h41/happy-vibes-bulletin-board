@@ -589,7 +589,7 @@ html, body {
 
 .like_button{
     margin-bottom: 5%;
-    float: right;
+    float: right;uy
     margin-right: 2%;
     height: 8%;
     width: 8%;
@@ -628,6 +628,20 @@ html, body {
     margin-top: -3%;
     margin-right: 2%;
 }
+
+.generate_post_design{
+
+}
+
+@keyframes generate_post_animation{
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
 
 @keyframes appear_button{
     from {

@@ -168,9 +168,6 @@ function generate_event(event_content, event_id, poster_name) {
     event_card.appendChild(user_posted);
 
     document.getElementById("events").appendChild(event_card);
-
-
-
 }
 
 function create_event() {
