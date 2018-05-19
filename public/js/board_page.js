@@ -93,15 +93,7 @@ function delete_post_it(post_it_id) {
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
 
-    XHR.onreadystatechange = function() {
-        if (XHR.readyState == XMLHttpRequest.DONE) {
-            console.log("deleted");
-            var post_it = document.getElementById(post_it_id);
-            remove_post_it(post_it);
-        }
         
-    }
-    
 }
 
 function delete_event(event_id) {
@@ -240,6 +232,7 @@ var board_full = false;
 var posts_on_page = [];
 
 function get_postits() {
+    //debugger;
     var XHR = new XMLHttpRequest();
 
     XHR.open('GET', '/get_post_its');
@@ -327,7 +320,7 @@ function generate_postit(postit_text, postit_id, postit_name, anonymous) {
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
         var name = document.createElement("P");
-        if (anonymous == "no" || is_admin == false) {
+        if (anonymous == "no" || is_admin == true) {
             name.appendChild(document.createTextNode("- " + postit_name));
         }
 
@@ -428,7 +421,8 @@ function check_posts(post_its) {
         }
 
         if (found == undefined) {
-            postitsdiv.removeChild(postitsdiv.children[i]);
+            //debugger;
+            remove_post_it(postitsdiv.children[i]);
         } else {
             var likes_val = document.getElementById(found._id + "_likes");
             likes_val.innerText = found.likes;
