@@ -114,11 +114,6 @@ function generate_event(event_content, event_id, poster_name) {
         /*hide_button.onclick = function() {delete_post_it(postit_id)};*/
         hide_button.style.display = "block";
         event_card.appendChild(hide_button);
-        
-        user_posted = document.createElement("P");
-        user_posted.className = "event_user_posted";
-        user_posted.appendChild(document.createTextNode("Posted by: " + poster_name));
-        event_card.appendChild(user_posted);
     }
     event_card.id = event_id;
     var event_name_h1 = document.createElement("H1");
@@ -149,10 +144,13 @@ function generate_event(event_content, event_id, poster_name) {
     var time_string = content.startTime + "-" + content.endTime;
     time_h2.appendChild(document.createTextNode(time_string));
     event_card.appendChild(time_h2);
-
-    event_card.appendChild(document.createElement("BR"));
-
     event_card.className = "event_card";
+
+    user_posted = document.createElement("P");
+    user_posted.className = "event_user_posted";
+    user_posted.appendChild(document.createTextNode("- " + poster_name));
+    event_card.appendChild(user_posted);
+
     document.getElementById("events").appendChild(event_card);
 
 
