@@ -73,11 +73,32 @@ function join_workspace() {
         }
     }
 
-
-
 }
 
+function get_oldest_post(post_its) {
+    
+    var post_its_on_page = []
+    var posts = document.getElementById('postits').children;
+    for (var i in posts) {
+        for (var j in post_its) {
+            if (posts[i].id == post_its[j]._id) {
+                post_its_on_page.push(post_its[j]);
+            }
+        }
+    }
 
+    debugger;
+    var min_timestamp = Number.MAX_SAFE_INTEGER;
+    var oldest_post = undefined;
+    for (var i in post_its_on_page) {
+        if (min_timestamp > post_its_on_page[i].timestamp) {
+            min_timestamp = post_its_on_page[i].timestamp;
+            oldest_post = post_its_on_page[i]._id;
+        }
+    }
+
+    return document.getElementById(oldest_post);
+}
 
 function delete_post_it(post_it_id) {
     var data_pairs = [];
@@ -263,9 +284,8 @@ function get_postits() {
             var broke = false;
             for (var i in post_its) {
                 if (posts_on_page.indexOf(post_its[i]._id) == -1) {
-                    var name = post_its[i].user[0].firstname;
-                    var anonymous = post_its[i].anonymous;
-                    var result = generate_postit(post_its[i].postItContent, post_its[i]._id, name, anonymous);
+                    
+                    var result = generate_postit(post_its, i);
                     if (!result) {
 
                         broke = true;
@@ -306,13 +326,16 @@ function like_post(post_id) {
 
 var coordinates = []
 
-function generate_postit(postit_text, postit_id, postit_name, anonymous) {
-    var text = postit_text;
+function generate_postit(post_its, i) {
+    var postit_name = post_its[i].user[0].firstname;
+    var anonymous = post_its[i].anonymous;
+    var postit_id = post_its[i]._id;
+    var text = post_its[i].postItContent;
     var postitsdiv = document.getElementById('postits');
     var postitsparent = document.getElementById('posits_parent');
 
     if (board_full) {
-        remove_post_it(postitsdiv.lastChild);
+        remove_post_it(get_oldest_post(post_its));
     }
 
     console.log(document.getElementById('postits').offsetHeight);

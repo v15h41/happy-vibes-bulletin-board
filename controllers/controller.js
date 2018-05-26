@@ -130,6 +130,7 @@ module.exports.get_post_its = function(req, res) {
                         "workspaceID" : 1,
                         "user.firstname" : 1,
                         "user.lastname" : 1,
+                        "timestamp" : 1,
                         "likes" : 1
                 }
                 }],function(err, post_its_found) {

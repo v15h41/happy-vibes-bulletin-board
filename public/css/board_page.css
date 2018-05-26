@@ -331,7 +331,7 @@ html, body {
 
 #new_event {
     width: 400px;
-    height: 150px;
+    height: 120px;
     padding: 13px;
 
     position: absolute;
@@ -589,7 +589,7 @@ html, body {
 
 .like_button{
     margin-bottom: 5%;
-    float: right;uy
+    float: right;
     margin-right: 2%;
     height: 8%;
     width: 8%;
