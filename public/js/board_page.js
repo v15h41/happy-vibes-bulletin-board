@@ -119,7 +119,6 @@ function delete_post_it(post_it_id, sticky) {
 function delete_event(event_id, event_card) {
     var data_pairs = [];
     var url_encoded_data = "";
-    event_card.className = "delete_event";
     console.log("Event deleted");
     data_pairs.push(encodeURIComponent("eventID") + '=' + encodeURIComponent(event_id));
 
@@ -133,6 +132,7 @@ function delete_event(event_id, event_card) {
 
     var events_div = document.getElementById("events");
     var event = document.getElementById(event_id);
+    event_card.className = "delete_event";
     events_div.removeChild(event);
 
 }
@@ -182,7 +182,6 @@ function generate_event(event_content, event_id, poster_name) {
     var time_string = content.startTime + "-" + content.endTime;
     time_h2.appendChild(document.createTextNode(time_string));
     event_card.appendChild(time_h2);
-    //event_card.className = "event_card";
 
     user_posted = document.createElement("P");
     user_posted.className = "event_user_posted";

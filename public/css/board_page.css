@@ -536,7 +536,7 @@ html, body {
     animation: create_new 0.7s ease;
 }
 
-delete_event {
+.delete_event {
     width: 380px;
     height: 160px;
     margin: 10px 10px 10px 10px;
