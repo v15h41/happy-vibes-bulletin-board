@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
 const users_db = mongoose.model('users');
 const workspace_db = mongoose.model('workspaces');
 const workspace_users_db = mongoose.model('workspace_users');
@@ -87,11 +89,13 @@ module.exports.submit_user = function(req, res) {
 
     users_db.find({"email":req.body.email}, function(err, user)  {
         if (user.length == 0) {
+            var hash = bcrypt.hashSync(req.body.password, 5);
+
             var user = new users_db({
                 "firstname":req.body.firstname,
                 "lastname":req.body.lastname,
                 "email":req.body.email,
-                "password":req.body.password, 
+                "password": hash, 
                 "likes": 0
             });
 
@@ -110,7 +114,6 @@ module.exports.submit_user = function(req, res) {
 };
 
 module.exports.get_post_its = function(req, res) {
-
     sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found)   {
         if (sessions_found.length) {
             post_its_db.aggregate([
@@ -141,14 +144,7 @@ module.exports.get_post_its = function(req, res) {
         }
     });
 
-/*
-    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
-        if (sessions_found.length) {
-            post_its_db.find({"workspaceID":req.cookies.workspaceID}, function(err, post_its_found) {
-                res.send(post_its_found);
-            });
-        }
-    });*/
+
 };
 
 
@@ -364,7 +360,7 @@ module.exports.submit_workspace = function(req, res) {
 module.exports.log_in = function(req, res) {
     users_db.find({"email":req.body.email}, function(err, user_found) {
         if (user_found.length) {
-            if (user_found[0].password == req.body.password) {
+            if (bcrypt.compareSync(req.body.password, user_found[0].password)) {
                 var session = new sessions_db({"userID":user_found[0]._id});
                 session.save(function (err, new_session) {
                     workspace_users_db.find({"userID":user_found[0]._id}, function(err, workspaceID_found) {
