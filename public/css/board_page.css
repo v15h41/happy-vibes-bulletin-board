@@ -270,7 +270,7 @@ html, body {
 
 @keyframes decreaseSize{
     from{
-        transform: scale(1.2);
+        transform: scale(1.1);
         z-index: 10;
     }
     to{
@@ -526,6 +526,27 @@ html, body {
     background: #555;
 }
 
+.spawn_event {
+    width: 380px;
+    height: 160px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 10px;
+    background-color: ghostwhite;
+    Opacity: 0.8;
+    animation: create_new 0.7s ease;
+}
+
+delete_event {
+    width: 380px;
+    height: 160px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 10px;
+    background-color: ghostwhite;
+    Opacity: 1;
+
+    animation: delete_post 0.7s ease;
+}
+
 .event_card {
     width: 380px;
     height: 160px;
@@ -533,9 +554,6 @@ html, body {
     border-radius: 10px;
     background-color: ghostwhite;
     Opacity: 0.8;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
 }
 
 .delete_event_button{
@@ -554,7 +572,7 @@ html, body {
 
 .event_card:hover {
     Opacity: 1;
-
+    z-index: 5;
     /*Glow*/
     -webkit-box-shadow: 0px 0px 20px #f29492;
     -moz-box-shadow: 0px 0px 20px #f29492;
@@ -670,9 +688,6 @@ html, body {
     margin-right: 2%;
 }
 
-.generate_post_design{
-
-}
 
 @keyframes generate_post_animation{
     0%{

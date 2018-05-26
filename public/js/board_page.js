@@ -1,6 +1,3 @@
-
-
-
 function open_new_note_overlay() {
     document.getElementById("note_submit_overlay").style.display = "block";
 }
@@ -77,7 +74,7 @@ function join_workspace() {
 
 function get_oldest_post(post_its) {
     
-    var post_its_on_page = []
+    var post_its_on_page = [];
     var posts = document.getElementById('postits').children;
     for (var i in posts) {
         for (var j in post_its) {
@@ -119,10 +116,11 @@ function delete_post_it(post_it_id, sticky) {
         
 }
 
-function delete_event(event_id) {
+function delete_event(event_id, event_card) {
     var data_pairs = [];
     var url_encoded_data = "";
-
+    event_card.className = "delete_event";
+    console.log("Event deleted");
     data_pairs.push(encodeURIComponent("eventID") + '=' + encodeURIComponent(event_id));
 
     url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
@@ -145,12 +143,13 @@ function generate_event(event_content, event_id, poster_name) {
     var content = event_content;
 
     var event_card = document.createElement("DIV");
-
+    event_card.className = "spawn_event";
+    event_card.onmouseover = function () {changeEventClass(this)};
     if (is_admin == true) {
         hide_button = document.createElement("img");
         hide_button.className = "delete_event_button";
         hide_button.src = "/img/cross.png";
-        hide_button.onclick = function() {delete_event(event_id)};
+        hide_button.onclick = function() {delete_event(event_id, event_card)};
         hide_button.style.display = "block";
         event_card.appendChild(hide_button);
     }
@@ -183,7 +182,7 @@ function generate_event(event_content, event_id, poster_name) {
     var time_string = content.startTime + "-" + content.endTime;
     time_h2.appendChild(document.createTextNode(time_string));
     event_card.appendChild(time_h2);
-    event_card.className = "event_card";
+    //event_card.className = "event_card";
 
     user_posted = document.createElement("P");
     user_posted.className = "event_user_posted";
@@ -191,6 +190,10 @@ function generate_event(event_content, event_id, poster_name) {
     event_card.appendChild(user_posted);
 
     document.getElementById("events").appendChild(event_card);
+}
+
+function changeEventClass(event){
+    event.className = "event_card";
 }
 
 function create_event() {
