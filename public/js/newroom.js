@@ -78,7 +78,7 @@ function new_user_submit() {
                                     if (XHR1.responseText.charAt(0) == "0") {
                                         document.getElementById("error_message").appendChild(document.createTextNode("Error: Database error"));
                                     } else {
-                                        window.location.href="/board_page";
+                                        window.location.href="/welcome";
                                     }
                                 }
                             }
@@ -152,7 +152,7 @@ function existing_user_submit() {
                                     if (XHR1.responseText.charAt(0) == "0") {
                                         document.getElementById("error_message").appendChild(document.createTextNode("Error: Database error"));
                                     } else {
-                                        window.location.href="/board_page";
+                                        window.location.href="/welcome";
                                     }
                                 }
                             }

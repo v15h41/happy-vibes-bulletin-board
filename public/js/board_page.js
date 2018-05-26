@@ -16,7 +16,7 @@ function exit_note_submit() {
 }
 
 function exit_join_workspace() {
-    document.getElementById("join_submit_overlay").style.display = "none";
+    document.getElementById("join_workspace_overlay").style.display = "none";
 }
 
 function open_join_workspace_overlay() {
@@ -70,6 +70,8 @@ function join_workspace() {
         }
     }
 
+    exit_join_workspace();
+
 }
 
 function get_oldest_post(post_its) {
@@ -84,7 +86,6 @@ function get_oldest_post(post_its) {
         }
     }
 
-    debugger;
     var min_timestamp = Number.MAX_SAFE_INTEGER;
     var oldest_post = undefined;
     for (var i in post_its_on_page) {

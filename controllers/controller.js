@@ -396,12 +396,24 @@ module.exports.add_user = function(req, res) {
         "user_role":req.body.user_role
     });
 
-    workspace_user.save(function (err, new_workspace_user) {
-        if (!err) {
-            res.send("1");
-        } else {
-            res.send("0Error: Database error");
-        }
+    console.log(req.body.workspaceID);
+    workspace_db.find({"_id":req.body.workspaceID}, function(err, work) {
+        console.log(work);
+        if (work != undefined && work.length) {
+            console.log("test");
+            workspace_users_db.find({"userID":req.body.userID, "workspaceID":req.body.workspaceID}, function(err, workspaceID_found) {
+                console.log(workspaceID_found);
+                if (workspaceID_found.length == 0) {
+                    workspace_user.save(function (err, new_workspace_user) {
+                        if (!err) {
+                            res.send("1");
+                        } else {
+                            res.send("0Error: Database error");
+                        }
+                    });
+                }
+            });
+        }           
     });
 };
 
