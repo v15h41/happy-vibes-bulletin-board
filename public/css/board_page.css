@@ -179,17 +179,47 @@ html, body {
     cursor: move;
 }
 
-.posted_sticky {
+.spawn_sticky {
     background-color: whitesmoke;
     position: absolute;
-    /*animation: create_new 0.7s ease;*/
+    animation: create_new 0.7s ease;
     font-family: "Oswald";
     min-height: 250px;
     min-width: 250px;
     max-height: 250px;
     max-width: 250px;
     border-radius: 5px;
-    opacity: 0.6;
+    opacity: 0.8;
+
+    width: 250px;
+    height: 250px;
+}
+.delete_sticky{
+    background-color: whitesmoke;
+    position: absolute;
+    font-family: "Oswald";
+    min-height: 250px;
+    min-width: 250px;
+    max-height: 250px;
+    max-width: 250px;
+    border-radius: 5px;
+    opacity: 2;
+    width: 250px;
+    height: 250px;
+
+    animation: delete_post 0.7s ease;
+}
+
+.posted_sticky {
+    background-color: whitesmoke;
+    position: absolute;
+    font-family: "Oswald";
+    min-height: 250px;
+    min-width: 250px;
+    max-height: 250px;
+    max-width: 250px;
+    border-radius: 5px;
+    opacity: 0.8;
 
     width: 250px;
     height: 250px;
@@ -201,6 +231,29 @@ html, body {
     opacity: 2;
     transform: scale(1.2);
     z-index: 10;
+}
+
+@keyframes delete_post{
+    0% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100%{
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+
+@keyframes create_new{
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
 }
 
 @keyframes increaseSize{
@@ -236,16 +289,6 @@ html, body {
 }
 
 
-@keyframes create_new{
-    0% {
-        opacity: 0;
-        transform: scale(0);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
 
 
 .postits {
@@ -264,9 +307,6 @@ html, body {
     margin-bottom: 1px;
 }
 
-.draggable{
-
-}
 
 #postHeader {
     font-family:  "Oswald";

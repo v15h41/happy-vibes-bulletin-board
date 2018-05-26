@@ -100,7 +100,9 @@ function get_oldest_post(post_its) {
     return document.getElementById(oldest_post);
 }
 
-function delete_post_it(post_it_id) {
+function delete_post_it(post_it_id, sticky) {
+    sticky.className = "delete_sticky";
+
     var data_pairs = [];
     var url_encoded_data = "";
 
@@ -341,13 +343,14 @@ function generate_postit(post_its, i) {
     console.log(document.getElementById('postits').offsetHeight);
     console.log(document.getElementById('postits_parent').offsetWidth);
     var sticky = document.createElement("DIV");
-    sticky.className = "posted_sticky";
+    sticky.className = "spawn_sticky";
+    sticky.onmouseover = function () {changeStickyClass(this)};
     // create a hide button for hiding posts, shown when hover
     if (is_admin == true) {
         hide_button = document.createElement("img");
         hide_button.className = "hide_posts_button";
         hide_button.src = "/img/cross.png";
-        hide_button.onclick = function() {delete_post_it(postit_id)};
+        hide_button.onclick = function() {delete_post_it(postit_id, sticky)};
         hide_button.style.display = "block";
         sticky.appendChild(hide_button);
     }
@@ -429,9 +432,17 @@ function generate_postit(post_its, i) {
     //name.style.top = ran_height+200+'px';
     //name.style.left = ran_width+200+'px';
     postitsdiv.appendChild(sticky);
+    //sticky.classList.add= "posted_sticky";
+
 
     return true;
 }
+
+function changeStickyClass(sticky){
+    sticky.className = "posted_sticky";
+}
+
+
 
 function get_likes() {
     var XHR = new XMLHttpRequest();
