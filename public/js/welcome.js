@@ -25,6 +25,8 @@ function get_workspaces() {
         if (XHR.readyState == XMLHttpRequest.DONE) {
             workspaces = JSON.parse(XHR.responseText);
             generate_workspaces(workspaces, workspaces.length);
+            var continue_button = document.getElementById("btn_login");
+            continue_button.style.display = "inline-block";
         }
     }
 }

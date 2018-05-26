@@ -104,6 +104,7 @@ html, body{
     border-radius: 6px;
     border: 0;
     opacity: 0.6;
+    display: none;
 }
 
 #btn_login:hover {
