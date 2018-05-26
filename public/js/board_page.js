@@ -525,3 +525,11 @@ window.setInterval(function(){
 }, 1000);
 
 
+function resize() {
+    console.log("yes");
+    var postitsdiv = document.getElementById('postits');
+    postitsdiv.innerHTML = "";
+    posts_on_page = [];
+    coordinates = []
+    board_full = false;
+}
