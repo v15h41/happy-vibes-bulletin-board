@@ -526,7 +526,6 @@ window.setInterval(function(){
 
 
 function resize() {
-    console.log("yes");
     var postitsdiv = document.getElementById('postits');
     postitsdiv.innerHTML = "";
     posts_on_page = [];
