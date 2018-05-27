@@ -176,9 +176,11 @@ module.exports.like_post = function(req, res) {
 module.exports.get_likes = function(req, res) {
     //get likes with the session ID
     sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
-        users_db.find({"_id":sessions_found[0].userID}, function(err, user_found) {
-            res.send("Likes: " + user_found[0].likes);
-        });
+        if (sessions_found != undefined && sessions_found.length) {
+            users_db.find({"_id":sessions_found[0].userID}, function(err, user_found) {
+                res.send("Likes: " + user_found[0].likes);
+            });
+        }        
     });
 };
 
