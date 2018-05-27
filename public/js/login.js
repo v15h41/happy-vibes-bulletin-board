@@ -2,6 +2,7 @@
  * Created by Happy Vibes Co. for INFO30005 Sem1 2018
  */
 
+// get user to log into our web
 function login() {
     document.getElementById("error_message").innerText = "";
     var username = document.getElementById("username");
@@ -15,11 +16,13 @@ function login() {
         var data_pairs = [];
         var url_encoded_data = "";
 
+        // get user email and password
         data_pairs.push(encodeURIComponent("email") + '=' + encodeURIComponent(document.getElementById("username").value));
         data_pairs.push(encodeURIComponent("password") + '=' + encodeURIComponent(document.getElementById("password").value));
 
         url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
+        // check inputs with database
         var XHR = new XMLHttpRequest();
 
         XHR.open('POST', '/log_in');

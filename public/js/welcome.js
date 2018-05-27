@@ -19,6 +19,7 @@ function open_workspace_overlay() {
     document.getElementById("login_control").style.display = "none";
 }
 
+// get workspaces that the user joined
 function get_workspaces() {
     var XHR = new XMLHttpRequest();
     XHR.open('GET', '/get_workspaces');
@@ -35,6 +36,7 @@ function get_workspaces() {
     }
 }
 
+// generate all workspaces on welcome page
 function generate_workspaces(workspaces, workspacesLength){
     for (var i= 0; i < workspacesLength; i++){
         console.log(workspaces[i])
@@ -42,6 +44,7 @@ function generate_workspaces(workspaces, workspacesLength){
     }
 }
 
+// generate a workspace on welcome page
 function generate_workspace(workspace_name, workspace_id) {
     var workplaceoptiondiv = document.getElementById('workplace_options');
     console.log("Workplaceoptiondiv created");
@@ -62,6 +65,7 @@ function generate_workspace(workspace_name, workspace_id) {
     console.log("workspace text appended to workplace option div");
 }
 
+// change user's current workspace to another workspace
 function change_workspace(workspace_ID) {
 
     var XHR = new XMLHttpRequest();

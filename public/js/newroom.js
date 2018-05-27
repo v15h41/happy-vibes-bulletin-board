@@ -12,17 +12,20 @@ function complete_existing_user() {
     document.getElementById("existing_account_frame").style.display = "block";
 }
 
+// add new user into a workspace
 function new_user_submit() {
     document.getElementById("error_message").innerText = "";
 
     var data_pairs = [];
     var url_encoded_data = "";
 
+    // get workspace data
     data_pairs.push(encodeURIComponent("workspaceID") + '=' + encodeURIComponent(document.getElementById("officeID").value));
     data_pairs.push(encodeURIComponent("workspace_name") + '=' + encodeURIComponent(document.getElementById("workspacename").value));
 
     url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
+    // submit workspace data to database
     var XHR = new XMLHttpRequest();
 
     XHR.open('POST', '/submit_workspace');
@@ -40,6 +43,7 @@ function new_user_submit() {
                 data_pairs = [];
                 url_encoded_data = "";
 
+                // get user data
                 data_pairs.push(encodeURIComponent("firstname") + '=' + encodeURIComponent(document.getElementById("firstname").value));
                 data_pairs.push(encodeURIComponent("lastname") + '=' + encodeURIComponent(document.getElementById("lastname").value));
                 data_pairs.push(encodeURIComponent("email") + '=' + encodeURIComponent(document.getElementById("email").value));
@@ -47,6 +51,7 @@ function new_user_submit() {
 
                 url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
+                // submit user data to database
                 var XHR1 = new XMLHttpRequest();
 
                 console.log(url_encoded_data);
@@ -94,15 +99,18 @@ function new_user_submit() {
     }
 }
 
+// add an existing user into a workspace
 function existing_user_submit() {
     var data_pairs = [];
     var url_encoded_data = "";
 
+    // get user data
     data_pairs.push(encodeURIComponent("email") + '=' + encodeURIComponent(document.getElementById("username").value));
     data_pairs.push(encodeURIComponent("password") + '=' + encodeURIComponent(document.getElementById("password1").value));
 
     url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
+    // submit user data to database
     var XHR = new XMLHttpRequest();
 
     XHR.open('POST', '/log_in');
@@ -119,11 +127,13 @@ function existing_user_submit() {
                 data_pairs = [];
                 url_encoded_data = "";
 
+                // get workspace data
                 data_pairs.push(encodeURIComponent("workspaceID") + '=' + encodeURIComponent(document.getElementById("officeID").value));
                 data_pairs.push(encodeURIComponent("workspace_name") + '=' + encodeURIComponent(document.getElementById("workspacename").value));
 
                 url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
+                // submit workspace data
                 var XHR1 = new XMLHttpRequest();
 
                 XHR1.open('POST', '/submit_workspace');
@@ -140,12 +150,14 @@ function existing_user_submit() {
                             data_pairs = [];
                             url_encoded_data = "";
 
+                            // get user and workspace data
                             data_pairs.push(encodeURIComponent("workspaceID") + '=' + encodeURIComponent(workspaceID));
                             data_pairs.push(encodeURIComponent("userID") + '=' + encodeURIComponent(userID));
                             data_pairs.push(encodeURIComponent("user_role") + '=' + encodeURIComponent("admin"));
 
                             url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
+                            // add user into workspace
                             var XHR2 = new XMLHttpRequest();
                             XHR2.open('POST', '/add_user');
                             XHR2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

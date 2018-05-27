@@ -12,15 +12,6 @@ function toggleDp() {
   }
   document.getElementById("Dropdown").classList.toggle("show");
 
-  /*
-  if (document.getElementById("line-icon").classList.contains("rolling")){
-    document.getElementById("line-icon").classList.remove("rolling");
-    document.getElementById("line-icon").classList.toggle("rollback");
-  }
-  document.getElementById("line-icon").classList.remove("rollback");
-  document.getElementById("line-icon").classList.toggle("rolling");
-  document.getElementById("Dropdown").classList.toggle("show");
-  */
 }
 
 window.onclick = function(event) {

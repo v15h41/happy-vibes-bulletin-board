@@ -2,6 +2,7 @@
  * Created by Happy Vibes Co. for INFO30005 Sem1 2018
  */
 
+// sign in a new user into workspace
 function login() {
     var XHR = new XMLHttpRequest();
 
@@ -17,6 +18,7 @@ function login() {
                 var data_pairs = [];
                 var url_encoded_data = "";
 
+                // get user data
                 data_pairs.push(encodeURIComponent("firstname") + '=' + encodeURIComponent(document.getElementById("firstname").value));
                 data_pairs.push(encodeURIComponent("lastname") + '=' + encodeURIComponent(document.getElementById("lastname").value));
                 data_pairs.push(encodeURIComponent("email") + '=' + encodeURIComponent(document.getElementById("email").value));
@@ -24,6 +26,7 @@ function login() {
 
                 url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
+                // add user into database
                 var XHR1 = new XMLHttpRequest();
 
                 console.log(url_encoded_data);
@@ -43,12 +46,14 @@ function login() {
                             data_pairs = [];
                             url_encoded_data = "";
 
+                            // get user and workspace data
                             data_pairs.push(encodeURIComponent("workspaceID") + '=' + encodeURIComponent(workspaceID));
                             data_pairs.push(encodeURIComponent("userID") + '=' + encodeURIComponent(userID));
                             data_pairs.push(encodeURIComponent("user_role") + '=' + encodeURIComponent("user"));
 
                             url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
+                            // sign the user to the workspace
                             var XHR2 = new XMLHttpRequest();
                             XHR2.open('POST', '/add_user');
                             XHR2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -68,4 +73,6 @@ function login() {
                 }
             }
 
-        }}}
+        }
+    }
+}
