@@ -24,10 +24,10 @@ function open_join_workspace_overlay() {
 }
 
 function join_workspace() {
-
+    //get entered workspaceID
     var workspace_name = document.getElementById("sticky_join_workspace_text").innerText;
 
-    // get workspace id
+    //get mongoDB workspace oid from database 
     var XHR_get_workspace_id = new XMLHttpRequest();
     XHR_get_workspace_id.open('GET', '/get_workspace_id/' + workspace_name);
     XHR_get_workspace_id.send();
@@ -37,27 +37,23 @@ function join_workspace() {
             var url_encoded_data = "";
             var default_role = "user";
 
-            // get workspaceID
+            // receive response
             var workspaceID = XHR_get_workspace_id.responseText.substring(1);
-            console.log("workspaceID: " + workspaceID);
 
-
-            // get user id
+            // get mongoDB user oid from database
             var XHR_get_user_id  = new XMLHttpRequest();
             XHR_get_user_id.open('GET', '/get_user_id');
             XHR_get_user_id.send();
             XHR_get_user_id.onreadystatechange = function(){
-                console.log("calling XHR_get_user_id");
                 if (XHR_get_user_id.readyState == XMLHttpRequest.DONE){
                     var userID = XHR_get_user_id.responseText;
-                    console.log("userID: " + userID);
                     data_pairs.push(encodeURIComponent("workspaceID") + '=' + encodeURIComponent(workspaceID));
                     data_pairs.push(encodeURIComponent("userID") + '=' + encodeURIComponent(userID));
 
                     data_pairs.push(encodeURIComponent("user role") + '=' + encodeURIComponent(default_role));
                     url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
-                    // add user into workspace
+                    // send user ID and workspace ID to the add user API
                     var XHR_add_user = new XMLHttpRequest();
                     XHR_add_user.open('POST', '/add_user');
                     XHR_add_user.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -70,12 +66,14 @@ function join_workspace() {
         }
     }
 
+    //close overlay 
     exit_join_workspace();
 
 }
 
+//get oldest post on page
 function get_oldest_post(post_its) {
-    
+    //filter out posts from post_its received by server to only those on page
     var post_its_on_page = [];
     var posts = document.getElementById('postits').children;
     for (var i in posts) {
@@ -86,6 +84,7 @@ function get_oldest_post(post_its) {
         }
     }
 
+    //find the post on page with the oldest timestamp
     var min_timestamp = Number.MAX_SAFE_INTEGER;
     var oldest_post = undefined;
     for (var i in post_its_on_page) {
@@ -95,9 +94,11 @@ function get_oldest_post(post_its) {
         }
     }
 
+    //return the DOM node that is the oldest post
     return document.getElementById(oldest_post);
 }
 
+//sends API request to delete a post it
 function delete_post_it(post_it_id, sticky) {
     sticky.className = "delete_sticky";
 
@@ -112,16 +113,14 @@ function delete_post_it(post_it_id, sticky) {
 
     XHR.open('POST', '/delete_post_it');
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    XHR.send(url_encoded_data);
-
-        
+    XHR.send(url_encoded_data);        
 }
 
+//sends API request to delete an event
 function delete_event(event_id, event_card) {
     var data_pairs = [];
     var url_encoded_data = "";
     event_card.className = "delete_event";
-    console.log("Event deleted");
     data_pairs.push(encodeURIComponent("eventID") + '=' + encodeURIComponent(event_id));
 
     url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
@@ -132,6 +131,7 @@ function delete_event(event_id, event_card) {
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
 
+    //remove event from the DOM
     var events_div = document.getElementById("events");
     var event = document.getElementById(event_id);
     events_div.removeChild(event);
@@ -139,22 +139,29 @@ function delete_event(event_id, event_card) {
 }
 
 var event_count = 0;
+//generate the DOM element for an event
 function generate_event(event_content, event_id, poster_name) {
     event_count++;
     var content = event_content;
 
+    //create outer div and give it attributes
     var event_card = document.createElement("DIV");
     event_card.className = "spawn_event";
     event_card.onmouseover = function () {changeEventClass(this)};
+
+    //add delete button for admin users 
     if (is_admin == true) {
         hide_button = document.createElement("img");
         hide_button.className = "delete_event_button";
         hide_button.src = "/img/cross.png";
+        //assign the onclick event a function with the event id and DOM element
         hide_button.onclick = function() {delete_event(event_id, event_card)};
         hide_button.style.display = "block";
         event_card.appendChild(hide_button);
     }
     event_card.id = event_id;
+
+    //add event details to the event card
     var event_name_h1 = document.createElement("H1");
     event_name_h1.className = "event_title";
     var name = document.createTextNode("Event: ");
@@ -183,24 +190,27 @@ function generate_event(event_content, event_id, poster_name) {
     var time_string = content.startTime + "-" + content.endTime;
     time_h2.appendChild(document.createTextNode(time_string));
     event_card.appendChild(time_h2);
-    //event_card.className = "event_card";
 
     user_posted = document.createElement("P");
     user_posted.className = "event_user_posted";
     user_posted.appendChild(document.createTextNode("- " + poster_name));
     event_card.appendChild(user_posted);
 
+    //append event card to parent div
     document.getElementById("events").appendChild(event_card);
 }
 
+//change class for animation
 function changeEventClass(event){
     event.className = "event_card";
 }
 
+//submit an event to the server API
 function create_event() {
     var data_pairs = [];
     var url_encoded_data = "";
 
+    //encode data
     data_pairs.push(encodeURIComponent("eventName") + '=' +
                         encodeURIComponent(document.getElementById("event_name_box").value));
 
@@ -225,11 +235,12 @@ function create_event() {
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
 
-
+    //close overlay
     exit_event_submit();
 
 }
 
+//request events from server
 function get_events() {
     var XHR = new XMLHttpRequest();
 
@@ -240,7 +251,7 @@ function get_events() {
     XHR.onreadystatechange = function() {
         if (XHR.readyState == XMLHttpRequest.DONE) {
             var events = JSON.parse(XHR.responseText);
-            console.log(events);
+            //generate an event if it is not in the DOM
             for (var i in events) {
                 if (!document.getElementById(events[i]._id)){
                     generate_event(events[i], events[i]._id, events[i].user[0].firstname);
@@ -250,8 +261,9 @@ function get_events() {
     }
 }
 
+//delete post it
 function remove_post_it(post_it) {
-    console.log(coordinates)
+    //find post it details in arrays
     var postitsdiv = document.getElementById('postits');
     var index = -1;
     for (var i in coordinates) {
@@ -260,10 +272,10 @@ function remove_post_it(post_it) {
         }
     }
 
+    //remove the post it
     postitsdiv.removeChild(post_it);
     coordinates.splice(index, 1);
-    console.log(index)
-    console.log("c" + [parseInt(post_it.style.top, 10), parseInt(post_it.style.left, 10)])
+    //change board state to not full and repopulate tracking arrays
     board_full = false;
     posts_on_page = [];
     for (var i in postitsdiv.children) {
@@ -274,8 +286,9 @@ function remove_post_it(post_it) {
 var board_full = false;
 var posts_on_page = [];
 
+//get post its from server  
 function get_postits() {
-    //debugger;
+    //get post its
     var XHR = new XMLHttpRequest();
 
     XHR.open('GET', '/get_post_its');
@@ -285,21 +298,25 @@ function get_postits() {
     XHR.onreadystatechange = function() {
         if (XHR.readyState == XMLHttpRequest.DONE) {
             var post_its = JSON.parse(XHR.responseText);
+            //parse posts and reverse them so that more recent posts are put on the board first
             post_its.reverse();
+            //check if any posts have been deleted
             check_posts(post_its);
+
+            //generate post its until it fails from being full 
             var broke = false;
             for (var i in post_its) {
-                if (posts_on_page.indexOf(post_its[i]._id) == -1) {
-                    
+                //only generate the post it if it is not tracked
+                if (posts_on_page.indexOf(post_its[i]._id) == -1) {                    
                     var result = generate_postit(post_its, i);
                     if (!result) {
-
                         broke = true;
                         break;
                     }
                 }
             }
 
+            //if generating posts fails from being full, keep track of posts that could not make it to the page
             if (broke) {
                 for (var i in post_its) {
                     if (posts_on_page.indexOf(post_its[i]._id) == -1) {
@@ -307,14 +324,15 @@ function get_postits() {
                     }
                 }
 
+                //set the board to be full
                 board_full = true;
             }
         }
     }
 }
 
+//send a request to the server, liking the post
 function like_post(post_id) {
-    console.log("liked");
     var data_pairs = [];
     var url_encoded_data = "";
 
@@ -332,7 +350,9 @@ function like_post(post_id) {
 
 var coordinates = []
 
+//generate the DOM elements for post its
 function generate_postit(post_its, i) {
+    //get data from post it array based on index
     var postit_name = post_its[i].user[0].firstname;
     var anonymous = post_its[i].anonymous;
     var postit_id = post_its[i]._id;
@@ -340,12 +360,11 @@ function generate_postit(post_its, i) {
     var postitsdiv = document.getElementById('postits');
     var postitsparent = document.getElementById('posits_parent');
 
+    //if the board is full, remove oldest post
     if (board_full) {
         remove_post_it(get_oldest_post(post_its));
     }
 
-    console.log(document.getElementById('postits').offsetHeight);
-    console.log(document.getElementById('postits_parent').offsetWidth);
     var sticky = document.createElement("DIV");
     sticky.className = "spawn_sticky";
     sticky.onmouseover = function () {changeStickyClass(this)};
@@ -358,21 +377,26 @@ function generate_postit(post_its, i) {
         hide_button.style.display = "block";
         sticky.appendChild(hide_button);
     }
+    
     sticky.id = postit_id;
+
+    //append content of post it 
     var p = document.createElement("P");
     p.appendChild(document.createTextNode(text));
     sticky_text = document.createElement("DIV");
     sticky_text.className = "sticky_text";
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
-        var name = document.createElement("P");
-        if (anonymous == "no" || is_admin == true) {
-            name.appendChild(document.createTextNode("- " + postit_name));
-        }
+    var name = document.createElement("P");
+    //append name to post it only if anonymous is no or if admin is true
+    if (anonymous == "no" || is_admin == true) {
+        name.appendChild(document.createTextNode("- " + postit_name));
+    }
 
-        name.className = "sticky_author";
-        sticky.appendChild(name);
+    name.className = "sticky_author";
+    sticky.appendChild(name);
 
+    //append likes
     var score = document.createElement("P");
     score.className = "post_score";
     score.id = postit_id+"_likes";
@@ -380,40 +404,42 @@ function generate_postit(post_its, i) {
     score.style.display = "block";
     sticky.appendChild(score);
 
+    //append like button
     like_button = document.createElement("img");
     like_button.className = "like_button";
     like_button.src = "/img/like_button.png";
     like_button.style.display = "block";
+    //set on click listener to function with post it ID
     like_button.onclick = function() {like_post(postit_id);}
     sticky.appendChild(like_button);
 
     var ran_height = 0
     var ran_width = 0
 
+    //attempt to post post it to random locations on the board
     var attempts = 0
     placed = false;
     while (!placed) {
-        console.log("repeated");
+        //generate random location
         ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 + 50 ;
         ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
 
+        //loop through all post its on page to see if there's any overlap
         var continue_loop = false;
         for (var i in coordinates) {
-            console.log(ran_height, ran_width);
-            console.log(coordinates[i][0], coordinates[i][1]);
             if ((ran_width+250) >= coordinates[i][1] && (coordinates[i][1]+250) >= ran_width &&
                 (ran_height+250) >= coordinates[i][0] && (coordinates[i][0]+250) >= ran_height) {
-
+                
+                //if there's an overlap, keep searching
                 continue_loop = true;
                 break;
             }
         }
-
+        
         if (continue_loop) {
-            console.log("test2");
             attempts++;
-            console.log(attempts);
 
+            //check if attempts don't exceed 200 
             if (attempts > 200) {
                 break;
             }
@@ -421,33 +447,32 @@ function generate_postit(post_its, i) {
             continue;
         }
 
+        //if no overlap, set placed to true
         placed=true;
 
     }
 
+    //if not placed, return false
     if (!placed) {
         return false;
     }
 
+    //if placed, put post it on page
     posts_on_page.push(postit_id);
     coordinates.push([ran_height, ran_width]);
     sticky.style.top = ran_height+'px';
     sticky.style.left = ran_width+'px';
-    //name.style.top = ran_height+200+'px';
-    //name.style.left = ran_width+200+'px';
     postitsdiv.appendChild(sticky);
-    //sticky.classList.add= "posted_sticky";
-
 
     return true;
 }
 
+//change class on hover
 function changeStickyClass(sticky){
     sticky.className = "posted_sticky";
 }
 
-
-
+//get number of likes for the logged in user 
 function get_likes() {
     var XHR = new XMLHttpRequest();
 
@@ -457,14 +482,18 @@ function get_likes() {
 
     XHR.onreadystatechange = function() {
         if (XHR.readyState == XMLHttpRequest.DONE) {
+            //update the likes component with user likes
             var user_likes_val = document.getElementById("user_likes");
             user_likes_val.innerText = XHR.responseText + " 👍"
         }
     }
 }
 
+//check if any post its are deleted 
 function check_posts(post_its) {
+    //get parent div
     var postitsdiv = document.getElementById('postits');
+    //check if there are any post its that are on the page but not in the post its received by the server
     for (var i = postitsdiv.children.length-1; i >= 0; i--) {
         var found = undefined;
         for (var j in post_its) {
@@ -474,21 +503,18 @@ function check_posts(post_its) {
             }
         }
 
+        //if the post it is not found, delete it
         if (found == undefined) {
-            //debugger;
             remove_post_it(postitsdiv.children[i]);
         } else {
+            //if post it is found, update its likes
             var likes_val = document.getElementById(found._id + "_likes");
             likes_val.innerText = found.likes;
         }
     }
 }
 
-
-
-
-
-
+//submit post it to the server
 function create_postit() {
     var data_pairs = [];
     var url_encoded_data = "";
@@ -496,6 +522,8 @@ function create_postit() {
     if(document.getElementById("is_anonymous").checked){
         is_anonymous = "yes";
     }
+
+    //encode post it data
     data_pairs.push(encodeURIComponent("post_it_content") + '=' + encodeURIComponent(document.getElementById("sticky_submit_text").innerText));
     data_pairs.push(encodeURIComponent("anonymous") + '=' + encodeURIComponent(is_anonymous));
     data_pairs.push(encodeURIComponent("hide") + '=' + encodeURIComponent("false"));
@@ -508,12 +536,9 @@ function create_postit() {
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
 
-
+    //close the overlay
     exit_note_submit();
 }
-
-
-
 
 <!-- Sidebar control -->
 function w3_open() {
@@ -532,7 +557,9 @@ function w3_close() {
 
 get_events();
 get_postits();
+get_likes();
 
+//poll for updates
 window.setInterval(function(){
     get_likes();
     get_events();
@@ -540,6 +567,7 @@ window.setInterval(function(){
 }, 1000);
 
 
+//on window resize, remove all post its and repostion them
 function resize() {
     var postitsdiv = document.getElementById('postits');
     postitsdiv.innerHTML = "";
