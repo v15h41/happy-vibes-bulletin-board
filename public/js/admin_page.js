@@ -1,3 +1,7 @@
+/**
+ * Created by Happy Vibes Co. for INFO30005 Sem1 2018
+ */
+
 function create_posts_table() {
 
     var XHR = new XMLHttpRequest();

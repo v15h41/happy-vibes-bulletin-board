@@ -1,3 +1,7 @@
+/**
+ * Created by Happy Vibes Co. for INFO30005 Sem1 2018
+ */
+
 function w3_open() {
     document.getElementById("main").style.marginLeft = "25%";
     document.getElementById("mySidebar").style.width = "25%";

@@ -1,3 +1,7 @@
+/**
+ * Created by Happy Vibes Co. for INFO30005 Sem1 2018
+ */
+
 function open_new_note_overlay() {
     document.getElementById("note_submit_overlay").style.display = "block";
 }

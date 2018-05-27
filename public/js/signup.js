@@ -1,3 +1,7 @@
+/**
+ * Created by Happy Vibes Co. for INFO30005 Sem1 2018
+ */
+
 function login() {
     var XHR = new XMLHttpRequest();
 

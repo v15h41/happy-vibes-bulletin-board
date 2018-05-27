@@ -1,3 +1,7 @@
+/**
+ * Created by Happy Vibes Co. for INFO30005 Sem1 2018
+ */
+
 function toggleDp() {
   if (document.getElementById("line-icon").classList.contains("rolling")){
     document.getElementById("line-icon").classList.remove("rolling");

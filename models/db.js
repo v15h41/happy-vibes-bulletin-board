@@ -1,3 +1,6 @@
+/**
+ * Created by Happy Vibes Co. for INFO30005 Sem1 2018
+ */
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://happyuser:happyvibes@ds159033.mlab.com:59033/happyvibes', function(err) {

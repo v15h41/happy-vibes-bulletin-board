@@ -1,3 +1,7 @@
+/**
+ * Created by Happy Vibes Co. for INFO30005 Sem1 2018
+ */
+
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/controller.js');

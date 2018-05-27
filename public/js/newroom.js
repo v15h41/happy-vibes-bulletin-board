@@ -1,3 +1,7 @@
+/**
+ * Created by Happy Vibes Co. for INFO30005 Sem1 2018
+ */
+
 function complete_new_user() {
     document.getElementById("buttons_to_hide").style.display = "none";
     document.getElementById("create_account_frame").style.display = "block";
