@@ -4,12 +4,12 @@ Written with vanilla HTML/CSS/JS as the frontend, Node.js and Express as the bac
 
 ## Features
 
-Post new messages or events anonymously or with your name  
-Like other people's posts and see how many likes your posts have received  
-Profanity filters  
-Admin powers! To see through anonymous posts and to delete posts/events  
-Separate workspaces and workspace selection  
-Brigthen up someone else's day!  
+* Post new messages or events anonymously or with your name  
+* Like other people's posts and see how many likes your posts have received  
+* Profanity filters  
+* Admin powers! To see through anonymous posts and to delete posts/events  
+* Separate workspaces and workspace selection  
+* Brigthen up someone else's day!  
 
 ## See it in action!
 
